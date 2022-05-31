@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: _title,
       theme: ThemeData(
-        primaryColor: primaryColor, colorScheme: ColorScheme.fromSwatch().copyWith(secondary: orange),
+        primaryColor: primaryColor,
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: orange),
       ),
       home: const MyStatefulWidget(),
     );
@@ -145,11 +146,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       style: optionStyle,
     ),
     Text(
-      'Index 1: Business',
+      'Index 1: Trash',
       style: optionStyle,
     ),
     Text(
-      'Index 2: School',
+      'Index 2: Stats',
       style: optionStyle,
     ),
     MyProfile()
