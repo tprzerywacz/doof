@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "376664865087",
+    "project_id": "doof-9e349",
+    "storage_bucket": "doof-9e349.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376664865087:android:74a7ed2a856226f8f5fb8a",
+        "android_client_info": {
+          "package_name": "com.example.doof_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "376664865087-fdv0aq73a6luvj5si0tp4njo8qckb13g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYBtcYuAJCOMqxh6YIrpiclM884BYGni4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "376664865087-fdv0aq73a6luvj5si0tp4njo8qckb13g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
