@@ -11,11 +11,22 @@ class Authenticate extends StatefulWidget {
 }
 
 class _AuthenticateState extends State<Authenticate> {
+
+  bool showSignIn = false;
+  void changeFromSignInToRegister(){
+    setState(() {
+      showSignIn = !showSignIn;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Register(),
-    );
+    if (showSignIn){
+      return SignIn(changeFromSignInToRegister: changeFromSignInToRegister);
+    }
+    else{
+      return Register(changeFromSignInToRegister: changeFromSignInToRegister);
+    }
     
   }
 }

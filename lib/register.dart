@@ -3,6 +3,8 @@ import 'package:doof_app/services/auth.dart';
 
 class Register extends StatefulWidget {
   //const Register({Key? key}) : super(key: key);
+  final Function changeFromSignInToRegister;
+  Register({required this.changeFromSignInToRegister});
 
   @override
   _RegisterState createState() => _RegisterState();
@@ -14,6 +16,7 @@ class _RegisterState extends State<Register> {
 
   String email = '';
   String password = '';
+  String error ='';
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,16 @@ class _RegisterState extends State<Register> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0.0,
-        title: Text('Sign up')
+        title: Text('Sign up'),
+        actions: <Widget>[
+          TextButton.icon(
+            onPressed: (){
+              widget.changeFromSignInToRegister();
+            },
+             icon: Icon(Icons.person),
+              label: Text('Sign in')
+              )
+        ],
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -50,7 +62,7 @@ class _RegisterState extends State<Register> {
                   });
                 },
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 10.0),
               ElevatedButton(
                 child: Text('Register',
                 style: TextStyle(color: Colors.white),
@@ -58,10 +70,25 @@ class _RegisterState extends State<Register> {
                 
                 onPressed: () async {
                   if (_formKey.currentState!.validate()){
-                    print(email);
+                    dynamic result = await _auth.registerWithEmailAndPassword(email, password);
+                    if (result == null){
+                      setState(() {
+                        error = 'Enter valid email';
+                      });
+                    }
+                    else{
+                      print("signed in");
+                      //print(result.uid);
+                    }
+                    
                   }
                 },
-              )
+              ),
+              SizedBox(height: 12.0),
+              Text(
+                error,
+                style: TextStyle(color: Colors.red)
+                )
 
             ],
             ),
