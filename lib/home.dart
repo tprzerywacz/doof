@@ -1,3 +1,4 @@
+import 'package:doof_app/services/auth.dart';
 import 'package:flutter/material.dart';
 const primaryColor = Color.fromARGB(255, 0, 160, 130);
 const Color orange = Color.fromARGB(255, 240, 123, 79);
@@ -43,6 +44,8 @@ class MyCustomForm extends StatelessWidget {
 class MyProfile extends StatelessWidget {
   const MyProfile({super.key});
 
+  //final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -84,7 +87,10 @@ class MyProfile extends StatelessWidget {
                     side: const BorderSide(color: orange)),
               ),
             ),
-            onPressed: () {},
+            onPressed: () async {
+              //await _auth.signOut();
+              print('logging out');
+            },
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 22.0),
               child: Text('Log out'),
