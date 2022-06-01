@@ -42,9 +42,9 @@ class MyCustomForm extends StatelessWidget {
 }
 
 class MyProfile extends StatelessWidget {
-  const MyProfile({super.key});
+  //MyProfile({super.key});
 
-  //final AuthService _auth = AuthService();
+  final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +88,7 @@ class MyProfile extends StatelessWidget {
               ),
             ),
             onPressed: () async {
-              //await _auth.signOut();
+              await _auth.signOut();
               print('logging out');
             },
             child: const Padding(
@@ -125,7 +125,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
+  final List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Home',
       style: optionStyle,
