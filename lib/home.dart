@@ -1,7 +1,6 @@
 import 'package:doof_app/services/auth.dart';
 import 'package:flutter/material.dart';
-const primaryColor = Color.fromARGB(255, 0, 160, 130);
-const Color orange = Color.fromARGB(255, 240, 123, 79);
+import 'package:doof_app/styles.dart';
 
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({Key? key}) : super(key: key);

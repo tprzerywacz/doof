@@ -1,3 +1,4 @@
+import 'package:doof_app/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:doof_app/services/auth.dart';
 
@@ -21,9 +22,9 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(255, 0, 160, 130),
         elevation: 0.0,
         title: Text('Sign up'),
         actions: <Widget>[
@@ -31,8 +32,8 @@ class _RegisterState extends State<Register> {
             onPressed: (){
               widget.changeFromSignInToRegister();
             },
-             icon: Icon(Icons.person),
-              label: Text('Sign in')
+             icon: Icon(Icons.person, color: Colors.white,),
+              label: Text('Sign in', style: TextStyle(color: Colors.white),)
               )
         ],
       ),
@@ -42,8 +43,9 @@ class _RegisterState extends State<Register> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              SizedBox(height: 20.0),
+              SizedBox(height: 10.0),
               TextFormField(
+                decoration: textInputDecorator.copyWith(hintText: 'E-mail'),
                 validator: (String? val) => val != null && val.isEmpty ? 'Enter e-mail' : null,
                 onChanged: (val) {
                   setState(() {
@@ -51,8 +53,9 @@ class _RegisterState extends State<Register> {
                   });
                 }
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 10.0),
               TextFormField(
+                decoration: textInputDecorator.copyWith(hintText: 'Password'),
                 obscureText: true,
                 validator: (String? val) => val != null && val.length < 6 ? 'Enter password 6+ long' : null,
 
@@ -63,9 +66,24 @@ class _RegisterState extends State<Register> {
                 },
               ),
               SizedBox(height: 10.0),
+              
               ElevatedButton(
-                child: Text('Register',
-                style: TextStyle(color: Colors.white),
+                style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(orange),
+                textStyle: MaterialStateProperty.all(
+                const TextStyle(fontSize: 18),
+                ),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(44.0),
+                    side: const BorderSide(color: orange)),
+                ),
+                ),
+                
+
+                child: const Padding(
+                padding: EdgeInsets.symmetric(vertical: 22.0),
+                child: Text('Register'),
                 ),
                 
                 onPressed: () async {
