@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:doof_app/fruit.dart';
+import 'package:doof_app/products.dart';
+import 'package:doof_app/my_profile.dart';
+import 'package:doof_app/home.dart';
 
 void main() => runApp(const MyApp());
 
@@ -8,14 +12,14 @@ const Color orange = Color.fromARGB(255, 240, 123, 79);
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  static const String _title = 'Flutter Code Sample';
-
+  static const String _title = 'Doof';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
       theme: ThemeData(
-        primaryColor: primaryColor, colorScheme: ColorScheme.fromSwatch().copyWith(secondary: orange),
+        primaryColor: primaryColor,
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: orange),
       ),
       home: const MyStatefulWidget(),
     );
@@ -41,6 +45,7 @@ class MyCustomForm extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextField(
             decoration: InputDecoration(
+              prefixIcon: Icon(Icons.search),
               border: OutlineInputBorder(),
               hintText: 'Enter a search term',
             ),
@@ -60,108 +65,39 @@ class MyCustomForm extends StatelessWidget {
   }
 }
 
-class MyProfile extends StatelessWidget {
-  const MyProfile({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        const Padding(
-          padding: EdgeInsets.all(24.0),
-          child: Text(
-            'Basic information',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ),
-        _buildRow(context, "Name", "Wojtek"),
-        _buildRow(context, "Surname", "Nowak"),
-        _buildRow(context, "Gender", "Prefer not to say"),
-        _buildRow(context, "Aga", "24"),
-        _buildRow(context, "Household people count", "5"),
-        const Padding(
-          padding: EdgeInsets.all(24.0),
-          child: Text(
-            'Settings',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ),
-        _buildRow(context, "Password", "Change password"),
-        _buildRow(context, "Data", "Export data"),
-        const Spacer(),
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(orange),
-              textStyle: MaterialStateProperty.all(
-                const TextStyle(fontSize: 18),
-              ),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(44.0),
-                    side: const BorderSide(color: orange)),
-              ),
-            ),
-            onPressed: () {},
-            child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 22.0),
-              child: Text('Log out'),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildRow(BuildContext context, String label, String value) {
-    final textTheme = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Flexible(child: Text(label, style: textTheme.headline6)),
-          Flexible(
-            child: Text(
-              value,
-              style: textTheme.headline6?.copyWith(color: Colors.blue),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  bool btnVisibility = true;
+  void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+    });
+  }
+
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    ThisWeek(),
+    Products(),
+    FruitItems(),
     MyProfile()
   ];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      btnVisibility = index == 0;
     });
   }
 
-  List<String> appBarText = const ['Home', 'Trash', 'Stats', 'My profile'];
+  List<String> appBarText = const [
+    'This week',
+    'Products',
+    'Stats',
+    'My profile'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -179,15 +115,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.delete),
-            label: 'Business',
+            label: 'Products',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bar_chart_outlined),
-            label: 'School',
+            label: 'Stats',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Alarm',
+            label: 'My profile',
           ),
         ],
         currentIndex: _selectedIndex,
@@ -203,6 +139,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         ),
         title: Text(appBarText[_selectedIndex]),
         backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+      ),
+      floatingActionButton: Visibility(
+        visible: btnVisibility, // Set it to false
+        child: FloatingActionButton(
+          backgroundColor: primaryColor,
+          onPressed: _incrementCounter,
+          tooltip: 'Increment',
+          child: const Icon(Icons.delete),
+        ),
       ),
     );
   }
