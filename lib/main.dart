@@ -3,8 +3,6 @@ import 'package:doof_app/services/auth.dart';
 import 'package:doof_app/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'services/auth.dart';
 import 'models/user.dart';
@@ -16,9 +14,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
-} 
-
-
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -30,14 +26,9 @@ class MyApp extends StatelessWidget {
     return StreamProvider<myUser?>.value(
       initialData: null,
       value: AuthService().user,
-      child: MaterialApp(
-        
-        //title: _title,
-        //theme: ThemeData(
-        //  primaryColor: primaryColor, colorScheme: ColorScheme.fromSwatch().copyWith(secondary: orange),
-        //),
+      child: const MaterialApp( 
         home: Wrapper(),
       ),
-    );
+      );
   }
 }
