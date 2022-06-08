@@ -44,6 +44,18 @@ class MyCustomForm extends StatelessWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  bool btnVisibility = true;
+
+void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+    });
+  }
+
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = <Widget>[
     const ThisWeek(),
@@ -55,6 +67,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      btnVisibility = index == 0;
     });
   }
 
@@ -101,6 +114,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         title: Text(appBarText[_selectedIndex]),
         backgroundColor: const Color.fromARGB(255, 0, 160, 130),
       ),
+      floatingActionButton: Visibility(
+        visible: btnVisibility, // Set it to false
+        child: FloatingActionButton(
+          backgroundColor: primaryColor,
+          onPressed: _incrementCounter,
+          tooltip: 'Increment',
+          child: const Icon(Icons.delete),
+        ),
+    ),
     );
   }
 }

@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:doof_app/services/auth.dart';
 
 class Register extends StatefulWidget {
-  //const Register({Key? key}) : super(key: key);
   final Function changeFromSignInToRegister;
-  Register({required this.changeFromSignInToRegister});
+  const Register({Key? key, required this.changeFromSignInToRegister}): super(key: key);
 
   @override
-  _RegisterState createState() => _RegisterState();
+  State<Register> createState() => _RegisterState();
 }
 
 class _RegisterState extends State<Register> {
@@ -26,24 +25,24 @@ class _RegisterState extends State<Register> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 0, 160, 130),
         elevation: 0.0,
-        title: Text('Sign up'),
+        title: const Text('Sign up'),
         actions: <Widget>[
           TextButton.icon(
             onPressed: (){
               widget.changeFromSignInToRegister();
             },
-             icon: Icon(Icons.person, color: Colors.white,),
-              label: Text('Sign in', style: TextStyle(color: Colors.white),)
+             icon: const Icon(Icons.person, color: Colors.white,),
+              label: const Text('Sign in', style: TextStyle(color: Colors.white),)
               )
         ],
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
           key: _formKey,
           child: Column(
             children: <Widget>[
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               TextFormField(
                 decoration: textInputDecorator.copyWith(hintText: 'E-mail'),
                 validator: (String? val) => val != null && val.isEmpty ? 'Enter e-mail' : null,
@@ -53,7 +52,7 @@ class _RegisterState extends State<Register> {
                   });
                 }
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               TextFormField(
                 decoration: textInputDecorator.copyWith(hintText: 'Password'),
                 obscureText: true,
@@ -65,7 +64,7 @@ class _RegisterState extends State<Register> {
                   });
                 },
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               
               ElevatedButton(
                 style: ButtonStyle(
@@ -95,17 +94,17 @@ class _RegisterState extends State<Register> {
                       });
                     }
                     else{
-                      print("signed in");
+                      //print("signed in");
                       //print(result.uid);
                     }
                     
                   }
                 },
               ),
-              SizedBox(height: 12.0),
+              const SizedBox(height: 12.0),
               Text(
                 error,
-                style: TextStyle(color: Colors.red)
+                style: const TextStyle(color: Colors.red)
                 )
 
             ],
