@@ -1,12 +1,15 @@
 import 'package:doof_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:doof_app/models/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 
 class FruitItems extends StatelessWidget {
   const FruitItems({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<MyUser?>(context);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -63,7 +66,9 @@ class FruitItems extends StatelessWidget {
                       side: const BorderSide(color: orange)),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                addToFirestore(uid: user!.uid);
+              },
               child: const Padding(
                 padding: EdgeInsets.symmetric(vertical: 22.0),
                 child: Text('Next step (3)'),
@@ -73,6 +78,18 @@ class FruitItems extends StatelessWidget {
         ],
       ),
     );
+  }
+
+    Future addToFirestore({required uid}) async {
+    final docUser = FirebaseFirestore.instance.collection('users').doc();
+    final json = {
+      'timestamp': DateTime.now(),
+      'uid': uid,
+      'how_much': 'a lot',
+      'what': "whatever"
+
+    };
+    await docUser.set(json);
   }
 
   Widget _fruitItem(BuildContext context, String label) {

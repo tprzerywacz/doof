@@ -71,7 +71,11 @@ void _incrementCounter() {
     });
   }
 
-  List<String> appBarText = const ['Home', 'Trash', 'Stats', 'My profile'];
+  List<String> appBarText = const [
+    'This week',
+    'Products',
+    'Stats',
+    'My profile'];
 
   @override
   Widget build(BuildContext context) {
