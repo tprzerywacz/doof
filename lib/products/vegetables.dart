@@ -146,7 +146,7 @@ class VegetableItems extends StatelessWidget {
       'Paprika (pcs)': 'assets/paprika.svg',
       'Cabbage (pcs)': 'assets/cabbage.svg',
       'Lettuce (pcs)': 'assets/lettuce.svg',
-      'Cucumber (pcs)': 'assets/cabbage.svg',
+      'Cucumber (pcs)': 'assets/cucumber.svg',
       'Brocolli (pcs)': 'assets/broccoli.svg',
       'Parsley (pcs)': 'assets/paprika.svg',
       'Garlic (pcs)': 'assets/garlic.svg'

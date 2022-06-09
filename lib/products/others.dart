@@ -142,13 +142,13 @@ class AnotherItems extends StatelessWidget {
       'Egg (pcs)': 'assets/egg.svg',
       'Ketchup (50g)': 'assets/mustard.svg',
       'Mustard (50g)': 'assets/mustard.svg',
-      'Cookies (50g)': 'assets/croissant.svg',
-      'Candy (50g)': 'assets/onion.svg',
-      'Honey (50g)': 'assets/onion.svg',
-      'Fries (50g)': 'assets/onion.svg',
-      'Chips (50g)': 'assets/onion.svg',
-      'Crisps (50g)': 'assets/onion.svg',
-      'Mushrooms (50g)': 'assets/onion.svg',
+      'Cookies (50g)': 'assets/cookie.svg',
+      'Candy (50g)': 'assets/candy.svg',
+      'Honey (50g)': 'assets/honey.svg',
+      'Fries (50g)': 'assets/fries.svg',
+      'Chips (50g)': 'assets/groceries.svg',
+      'Crisps (50g)': 'assets/groceries.svg',
+      'Mushrooms (50g)': 'assets/mushroom.svg',
     };
     final String assetName = assetsMap[name]!;
     final Widget svg = SvgPicture.asset(

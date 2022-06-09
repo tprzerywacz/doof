@@ -39,6 +39,8 @@ dependencies:
   provider: ^6.0.3
   flutter_svg: ^1.1.0
   cloud_firestore: ^3.1.17
+  pie_chart: ^5.3.1
+  charts_flutter: ^0.12.0
 
 dev_dependencies:
   flutter_test:
@@ -118,6 +120,13 @@ flutter:
     - assets/tortilla.svg
     - assets/water.svg
     - assets/yoghurt.svg
+    - assets/candy.svg
+    - assets/cookie.svg
+    - assets/cucumber.svg
+    - assets/fries.svg
+    - assets/groceries.svg
+    - assets/honey.svg
+    - assets/mushroom.svg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
