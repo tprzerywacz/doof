@@ -1,6 +1,12 @@
+import 'package:doof_app/products/bread.dart';
+import 'package:doof_app/products/dairy.dart';
+import 'package:doof_app/products/drinks.dart';
+import 'package:doof_app/products/others.dart';
+import 'package:doof_app/products/vegetables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:doof_app/fruit.dart';
+import 'package:doof_app/products/fruits.dart';
+import 'package:doof_app/products/meat.dart';
 
 class Products extends StatelessWidget {
   const Products({super.key});
@@ -10,23 +16,31 @@ class Products extends StatelessWidget {
     return Navigator(
       onGenerateRoute: (settings) {
         Widget page = const Categories();
-        // switch (_selectedIndex) {
-        //   case 0:
-        //     page = MyProfile();
-        //     break;
-        //   case 1:
-        //     page = Products();
-        //     break;
-        //   case 2:
-        //     page = const FruitItems();
-        //     break;
-        //   case 3:
-        //     page = MyProfile();
-        //     break;
-        //   default:
-        //     break;
-        // }
-        if (settings.name == 'Fruits') page = const Fruits();
+        switch (settings.name) {
+          case 'Meat':
+            page = const Meat();
+            break;
+          case 'Vegetables':
+            page = const Vegetables();
+            break;
+          case 'Fruits':
+            page = const Fruits();
+            break;
+          case 'Dairy':
+            page = const Dairy();
+            break;
+          case 'Drinks':
+            page = const Drinks();
+            break;
+          case 'Bread':
+            page = const Bread();
+            break;
+          case 'Another':
+            page = const Another();
+            break;
+          default:
+            break;
+        }
         return MaterialPageRoute(builder: (_) => page);
       },
     );
@@ -94,7 +108,7 @@ class Categories extends StatelessWidget {
           ),
         ),
         onPressed: () => {
-          Navigator.pushNamed(context, 'Fruits'),
+          Navigator.pushNamed(context, label),
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 18.0),
@@ -132,6 +146,32 @@ class Categories extends StatelessWidget {
   }
 }
 
+class Meat extends StatelessWidget {
+  const Meat({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+          title: const Text('Meat'),
+        ),
+        body: const MeatItems(),
+      );
+}
+
+class Vegetables extends StatelessWidget {
+  const Vegetables({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+          title: const Text('Vegetables'),
+        ),
+        body: const VegetableItems(),
+      );
+}
+
 class Fruits extends StatelessWidget {
   const Fruits({Key? key}) : super(key: key);
 
@@ -142,5 +182,57 @@ class Fruits extends StatelessWidget {
           title: const Text('Fruits'),
         ),
         body: const FruitItems(),
+      );
+}
+
+class Dairy extends StatelessWidget {
+  const Dairy({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+          title: const Text('Vegetables'),
+        ),
+        body: const DairyItems(),
+      );
+}
+
+class Drinks extends StatelessWidget {
+  const Drinks({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+          title: const Text('Drinks'),
+        ),
+        body: const DrinkItems(),
+      );
+}
+
+class Bread extends StatelessWidget {
+  const Bread({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+          title: const Text('Bread'),
+        ),
+        body: const BreadItems(),
+      );
+}
+
+class Another extends StatelessWidget {
+  const Another({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+          title: const Text('Another'),
+        ),
+        body: const AnotherItems(),
       );
 }

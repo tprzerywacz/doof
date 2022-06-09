@@ -1,6 +1,6 @@
 import 'package:doof_app/services/auth.dart';
+import 'package:doof_app/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:doof_app/main.dart';
 
 class MyProfile extends StatelessWidget {
   MyProfile({super.key});
@@ -46,14 +46,14 @@ class MyProfile extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(orange),
+                backgroundColor: MaterialStateProperty.all(customOrange),
                 textStyle: MaterialStateProperty.all(
                   const TextStyle(fontSize: 18),
                 ),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(44.0),
-                      side: const BorderSide(color: orange)),
+                      side: const BorderSide(color: customOrange)),
                 ),
               ),
               onPressed: () async {

@@ -1,12 +1,13 @@
-import 'package:doof_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:doof_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
-class FruitItems extends StatelessWidget {
-  const FruitItems({super.key});
+import '../styles.dart';
+
+class BreadItems extends StatelessWidget {
+  const BreadItems({super.key});
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<MyUser?>(context);
@@ -23,7 +24,7 @@ class FruitItems extends StatelessWidget {
                   borderRadius: BorderRadius.circular(48.0),
                 ),
                 filled: true,
-                hintText: 'Enter the name of the fruit',
+                hintText: 'Enter the name of the bread',
               ),
             ),
           ),
@@ -34,36 +35,37 @@ class FruitItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          // const Padding(
-          //   padding: EdgeInsets.all(24.0),
-          //   child: Image(image: AssetImage('assets/a.png')),
-          // ),
-          _fruitItem(context, 'Orange (pcs)'),
-          _fruitItem(context, 'Lemon (pcs)'),
-          _fruitItem(context, 'Peach (pcs)'),
+          _fruitItem(context, 'White bread (50g)'),
+          _fruitItem(context, 'Rolls (pcs)'),
+          _fruitItem(context, 'Tortilla (50g)'),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
-              'All fruits',
+              'All dairy',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          _fruitItem(context, 'Arbuz 100g'),
-          _fruitItem(context, 'Avocado (pcs)'),
-          _fruitItem(context, 'Orange (pcs)'),
-          _fruitItem(context, 'Peach (pcs)'),
+          _fruitItem(context, 'White bread (50g)'),
+          _fruitItem(context, 'Whole grain bread (50g)'),
+          _fruitItem(context, 'Wheat bread (50g)'),
+          _fruitItem(context, 'Eye bread (50g)'),
+          _fruitItem(context, 'Rolls (pcs)'),
+          _fruitItem(context, 'Brench bread (50g)'),
+          _fruitItem(context, 'Hot dog bread (50g)'),
+          _fruitItem(context, 'Pretzel (50g)'),
+          _fruitItem(context, 'Tortilla (50g)'),
           Padding(
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(orange),
+                backgroundColor: MaterialStateProperty.all(customOrange),
                 textStyle: MaterialStateProperty.all(
                   const TextStyle(fontSize: 18),
                 ),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(44.0),
-                      side: const BorderSide(color: orange)),
+                      side: const BorderSide(color: customOrange)),
                 ),
               ),
               onPressed: () {
@@ -80,14 +82,13 @@ class FruitItems extends StatelessWidget {
     );
   }
 
-    Future addToFirestore({required uid}) async {
+  Future addToFirestore({required uid}) async {
     final docUser = FirebaseFirestore.instance.collection('users').doc();
     final json = {
       'timestamp': DateTime.now(),
       'uid': uid,
       'how_much': 'a lot',
       'what': "whatever"
-
     };
     await docUser.set(json);
   }
@@ -98,7 +99,7 @@ class FruitItems extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(134, 216, 216, 216),
+          color: itemsBackColor,
           border: Border.all(
             color: const Color.fromARGB(134, 44, 44, 44),
           ),
@@ -135,13 +136,15 @@ class FruitItems extends StatelessWidget {
 
   Widget _getLogo(BuildContext context, String name) {
     Map<String, String> assetsMap = {
-      'Meat': 'assets/chicken-leg.svg',
-      'Vegetables': 'assets/lettuce.svg',
-      'Orange (pcs)': 'assets/orange.svg',
-      'Lemon (pcs)': 'assets/lemon.svg',
-      'Peach (pcs)': 'assets/peach.svg',
-      'Arbuz 100g': 'assets/watermelon.svg',
-      'Avocado (pcs)': 'assets/avocado.svg'
+      'White bread (50g)': 'assets/bread 2.svg',
+      'Whole grain bread (50g)': 'assets/bread 3.svg',
+      'Wheat bread (50g)': 'assets/bread 4.svg',
+      'Eye bread (50g)': 'assets/croissant.svg',
+      'Rolls (pcs)': 'assets/bread-roll.svg',
+      'Brench bread (50g)': 'assets/baguette.svg',
+      'Hot dog bread (50g)': 'assets/hotdog.svg',
+      'Pretzel (50g)': 'assets/pretzel.svg',
+      'Tortilla (50g)': 'assets/tortilla.svg',
     };
     final String assetName = assetsMap[name]!;
     final Widget svg = SvgPicture.asset(

@@ -7,9 +7,6 @@ import 'package:provider/provider.dart';
 import 'services/auth.dart';
 import 'models/user.dart';
 
-const primaryColor = Color.fromARGB(255, 0, 160, 130);
-const Color orange = Color.fromARGB(255, 240, 123, 79);
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -18,8 +15,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
-  //static const String _title = 'Flutter Code Sample';
 
   @override
   Widget build(BuildContext context) {

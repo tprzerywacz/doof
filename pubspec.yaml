@@ -85,6 +85,39 @@ flutter:
     - assets/peach.svg
     - assets/recycle-bin.svg
     - assets/watermelon.svg
+    - assets/baguette.svg
+    - assets/bread 2.svg
+    - assets/bread 3.svg
+    - assets/bread 4.svg
+    - assets/bread-roll.svg
+    - assets/broccoli.svg
+    - assets/butter.svg
+    - assets/cabbage.svg
+    - assets/carrot.svg
+    - assets/cattle.svg
+    - assets/cheese.svg
+    - assets/cocktail.svg
+    - assets/croissant.svg
+    - assets/egg.svg
+    - assets/garlic.svg
+    - assets/hen.svg
+    - assets/hotdog.svg
+    - assets/ice-coffee.svg
+    - assets/juice.svg
+    - assets/milkshake.svg
+    - assets/onion.svg
+    - assets/paprika.svg
+    - assets/pig.svg
+    - assets/potato.svg
+    - assets/prawn.svg
+    - assets/pretzel.svg
+    - assets/shark.svg
+    - assets/sheep.svg
+    - assets/tea-bag.svg
+    - assets/tomato.svg
+    - assets/tortilla.svg
+    - assets/water.svg
+    - assets/yoghurt.svg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -75,7 +75,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: orange,
+        selectedItemColor: customOrange,
         unselectedItemColor: const Color.fromARGB(255, 255, 255, 255),
         showSelectedLabels: false,
         showUnselectedLabels: false,

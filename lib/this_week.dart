@@ -10,8 +10,18 @@ class ThisWeek extends StatelessWidget {
         leading: const BackButton(
           color: Color.fromARGB(255, 255, 255, 255),
         ),
+        centerTitle: true,
         title: const Text("This week"),
         backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.arrow_forward),
+            onPressed: () {},
+          ),
+          // NextButton(
+          //   color: Color.fromARGB(255, 255, 255, 255),
+          // )
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
