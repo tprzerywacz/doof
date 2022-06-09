@@ -1,4 +1,3 @@
-
 import 'package:doof_app/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:doof_app/main.dart';
@@ -10,55 +9,64 @@ class MyProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        const Padding(
-          padding: EdgeInsets.all(24.0),
-          child: Text(
-            'Basic information',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        leading: const BackButton(
+          color: Color.fromARGB(255, 255, 255, 255),
         ),
-        _buildRow(context, "Name", "Marcin"),
-        _buildRow(context, "Surname", "Nowak"),
-        _buildRow(context, "Gender", "Prefer not to say"),
-        _buildRow(context, "Aga", "24"),
-        _buildRow(context, "Household people count", "5"),
-        const Padding(
-          padding: EdgeInsets.all(24.0),
-          child: Text(
-            'Settings',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ),
-        _buildRow(context, "Password", "Change password"),
-        _buildRow(context, "Data", "Export data"),
-        const Spacer(),
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(orange),
-              textStyle: MaterialStateProperty.all(
-                const TextStyle(fontSize: 18),
-              ),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(44.0),
-                    side: const BorderSide(color: orange)),
-              ),
-            ),
-            onPressed: () async {
-              await _auth.signOut();
-            },
-            child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 22.0),
-              child: Text('Log out'),
+        title: const Text("My profile"),
+        backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          const Padding(
+            padding: EdgeInsets.all(24.0),
+            child: Text(
+              'Basic information',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-        ),
-      ],
+          _buildRow(context, "Name", "Marcin"),
+          _buildRow(context, "Surname", "Nowak"),
+          _buildRow(context, "Gender", "Prefer not to say"),
+          _buildRow(context, "Aga", "24"),
+          _buildRow(context, "Household people count", "5"),
+          const Padding(
+            padding: EdgeInsets.all(24.0),
+            child: Text(
+              'Settings',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+          ),
+          _buildRow(context, "Password", "Change password"),
+          _buildRow(context, "Data", "Export data"),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(orange),
+                textStyle: MaterialStateProperty.all(
+                  const TextStyle(fontSize: 18),
+                ),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(44.0),
+                      side: const BorderSide(color: orange)),
+                ),
+              ),
+              onPressed: () async {
+                await _auth.signOut();
+              },
+              child: const Padding(
+                padding: EdgeInsets.symmetric(vertical: 22.0),
+                child: Text('Log out'),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -81,4 +89,3 @@ class MyProfile extends StatelessWidget {
     );
   }
 }
-
