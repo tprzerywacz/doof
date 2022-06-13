@@ -6,46 +6,14 @@ import 'package:pie_chart/pie_chart.dart';
 import 'package:doof_app/charts/food_thrown_series.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
-class Statistics extends StatelessWidget {
-  Statistics({super.key});
-  final Map<String, double> dataMap = {
-    "Meat": 5,
-    "Vegetables": 3,
-    "Fruit": 2,
-    "Drinks": 6,
-    "Dairy": 1,
-    "Backery": 4,
-    "Another": 5,
-  };
+class Statistics extends StatefulWidget {
+  const Statistics({Key? key}) : super(key: key);
 
-  final List<FoodThrownSeries> data = [
-    FoodThrownSeries(
-      year: " 09/05 \n 16/05 ",
-      weight: 600,
-      barColor: charts.ColorUtil.fromDartColor(primaryColor),
-    ),
-    FoodThrownSeries(
-      year: " 17/05 \n 23/05 ",
-      weight: 500,
-      barColor: charts.ColorUtil.fromDartColor(primaryColor),
-    ),
-    FoodThrownSeries(
-      year: " 24/05 \n 30/05 ",
-      weight: 460,
-      barColor: charts.ColorUtil.fromDartColor(primaryColor),
-    ),
-    FoodThrownSeries(
-      year: " 31/06 \n 06/06 ",
-      weight: 520,
-      barColor: charts.ColorUtil.fromDartColor(primaryColor),
-    ),
-    FoodThrownSeries(
-      year: "This week",
-      weight: 275,
-      barColor: charts.ColorUtil.fromDartColor(customOrange),
-    ),
-  ];
+  @override
+  State<Statistics> createState() => _StatisticsState();
+}
 
+class _StatisticsState extends State<Statistics> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,6 +96,43 @@ class Statistics extends StatelessWidget {
     );
   }
 }
+
+final Map<String, double> dataMap = {
+  "Meat": 5,
+  "Vegetables": 3,
+  "Fruit": 2,
+  "Drinks": 6,
+  "Dairy": 1,
+  "Backery": 4,
+  "Another": 5,
+};
+final List<FoodThrownSeries> data = [
+  FoodThrownSeries(
+    year: " 09/05 \n 16/05 ",
+    weight: 600,
+    barColor: charts.ColorUtil.fromDartColor(primaryColor),
+  ),
+  FoodThrownSeries(
+    year: " 17/05 \n 23/05 ",
+    weight: 500,
+    barColor: charts.ColorUtil.fromDartColor(primaryColor),
+  ),
+  FoodThrownSeries(
+    year: " 24/05 \n 30/05 ",
+    weight: 460,
+    barColor: charts.ColorUtil.fromDartColor(primaryColor),
+  ),
+  FoodThrownSeries(
+    year: " 31/06 \n 06/06 ",
+    weight: 520,
+    barColor: charts.ColorUtil.fromDartColor(primaryColor),
+  ),
+  FoodThrownSeries(
+    year: "This week",
+    weight: 275,
+    barColor: charts.ColorUtil.fromDartColor(customOrange),
+  ),
+];
 
 class WeekWraper extends StatelessWidget {
   const WeekWraper({

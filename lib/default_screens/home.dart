@@ -29,7 +29,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   final List<Widget> _widgetOptions = <Widget>[
     const ThisWeek(),
     const Products(),
-    Statistics(),
+    const Statistics(),
     MyProfile()
   ];
 

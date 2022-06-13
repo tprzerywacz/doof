@@ -1,10 +1,9 @@
 import 'package:doof_app/styles.dart';
+import 'package:doof_app/widgets/product_item.dart';
 import 'package:flutter/material.dart';
 import 'package:doof_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
-
-import '../widgets/get_logo.dart';
 
 class FruitItems extends StatelessWidget {
   const FruitItems({super.key});
@@ -35,13 +34,9 @@ class FruitItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          // const Padding(
-          //   padding: EdgeInsets.all(24.0),
-          //   child: Image(image: AssetImage('assets/a.png')),
-          // ),
-          _fruitItem(context, 'Orange (pcs)'),
-          _fruitItem(context, 'Lemon (pcs)'),
-          _fruitItem(context, 'Peach (pcs)'),
+          const ProductItem(label: 'Orange (pcs)'),
+          const ProductItem(label: 'Lemon (pcs)'),
+          const ProductItem(label: 'Peach (pcs)'),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -49,10 +44,10 @@ class FruitItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          _fruitItem(context, 'Watermelon 100g'),
-          _fruitItem(context, 'Avocado (pcs)'),
-          _fruitItem(context, 'Orange (pcs)'),
-          _fruitItem(context, 'Peach (pcs)'),
+          const ProductItem(label: 'Watermelon 100g'),
+          const ProductItem(label: 'Avocado (pcs)'),
+          const ProductItem(label: 'Orange (pcs)'),
+          const ProductItem(label: 'Peach (pcs)'),
           Padding(
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
@@ -90,46 +85,5 @@ class FruitItems extends StatelessWidget {
       'what': "whatever"
     };
     await docUser.set(json);
-  }
-
-  Widget _fruitItem(BuildContext context, String label) {
-    final textTheme = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-      child: Container(
-        decoration: BoxDecoration(
-          color: itemsBackColor,
-          border: Border.all(
-            color: const Color.fromARGB(134, 44, 44, 44),
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(45)),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 18.0),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: GetLogo(name: label),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 0),
-                child: Text(label, style: textTheme.headline6),
-              ),
-              const Spacer(),
-              const Icon(Icons.remove_circle_outlined, color: primaryColor),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text("1"),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(right: 25),
-                child: Icon(Icons.add_circle_outlined, color: primaryColor),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }

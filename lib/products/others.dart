@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:doof_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
-
-import '../widgets/get_logo.dart';
 import '../styles.dart';
+import '../widgets/product_item.dart';
 
 class OtherItems extends StatelessWidget {
   const OtherItems({super.key});
@@ -35,9 +34,9 @@ class OtherItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          _fruitItem(context, 'Egg (pcs)'),
-          _fruitItem(context, 'Cookies (50g)'),
-          _fruitItem(context, 'Mushrooms (50g)'),
+          const ProductItem(label: 'Egg (pcs)'),
+          const ProductItem(label: 'Cookies (50g)'),
+          const ProductItem(label: 'Mushrooms (50g)'),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -45,15 +44,15 @@ class OtherItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          _fruitItem(context, 'Prawns (50g)'),
-          _fruitItem(context, 'Egg (pcs)'),
-          _fruitItem(context, 'Ketchup or mustard (50g)'),
-          _fruitItem(context, 'Cookies (50g)'),
-          _fruitItem(context, 'Candy (50g)'),
-          _fruitItem(context, 'Honey (50g)'),
-          _fruitItem(context, 'Fries (50g)'),
-          _fruitItem(context, 'Chips (50g)'),
-          _fruitItem(context, 'Mushrooms (50g)'),
+          const ProductItem(label: 'Prawns (50g)'),
+          const ProductItem(label: 'Egg (pcs)'),
+          const ProductItem(label: 'Ketchup or mustard (50g)'),
+          const ProductItem(label: 'Cookies (50g)'),
+          const ProductItem(label: 'Candy (50g)'),
+          const ProductItem(label: 'Honey (50g)'),
+          const ProductItem(label: 'Fries (50g)'),
+          const ProductItem(label: 'Chips (50g)'),
+          const ProductItem(label: 'Mushrooms (50g)'),
           Padding(
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
@@ -91,46 +90,5 @@ class OtherItems extends StatelessWidget {
       'what': "whatever"
     };
     await docUser.set(json);
-  }
-
-  Widget _fruitItem(BuildContext context, String label) {
-    final textTheme = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-      child: Container(
-        decoration: BoxDecoration(
-          color: itemsBackColor,
-          border: Border.all(
-            color: const Color.fromARGB(134, 44, 44, 44),
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(45)),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 18.0),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: GetLogo(name: label),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 0),
-                child: Text(label, style: textTheme.headline6),
-              ),
-              const Spacer(),
-              const Icon(Icons.remove_circle_outlined, color: primaryColor),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text("1"),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(right: 25),
-                child: Icon(Icons.add_circle_outlined, color: primaryColor),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }

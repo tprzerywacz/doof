@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:doof_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
-
-import '../widgets/get_logo.dart';
 import '../styles.dart';
+import '../widgets/product_item.dart';
 
 class VegetableItems extends StatelessWidget {
   const VegetableItems({super.key});
@@ -35,9 +34,9 @@ class VegetableItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          _fruitItem(context, 'Carrots (pcs)'),
-          _fruitItem(context, 'Tomatoes (pcs)'),
-          _fruitItem(context, 'Cucumber (pcs)'),
+          const ProductItem(label: 'Carrots (pcs)'),
+          const ProductItem(label: 'Tomatoes (pcs)'),
+          const ProductItem(label: 'Cucumber (pcs)'),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -45,17 +44,17 @@ class VegetableItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          _fruitItem(context, 'Carrots (pcs)'),
-          _fruitItem(context, 'Potatoes (pcs)'),
-          _fruitItem(context, 'Tomatoes (pcs)'),
-          _fruitItem(context, 'Onion (pcs)'),
-          _fruitItem(context, 'Paprika (pcs)'),
-          _fruitItem(context, 'Cabbage (pcs)'),
-          _fruitItem(context, 'Lettuce (pcs)'),
-          _fruitItem(context, 'Cucumber (pcs)'),
-          _fruitItem(context, 'Brocolli (pcs)'),
-          _fruitItem(context, 'Parsley (pcs)'),
-          _fruitItem(context, 'Garlic (pcs)'),
+          const ProductItem(label: 'Carrots (pcs)'),
+          const ProductItem(label: 'Potatoes (pcs)'),
+          const ProductItem(label: 'Tomatoes (pcs)'),
+          const ProductItem(label: 'Onion (pcs)'),
+          const ProductItem(label: 'Paprika (pcs)'),
+          const ProductItem(label: 'Cabbage (pcs)'),
+          const ProductItem(label: 'Lettuce (pcs)'),
+          const ProductItem(label: 'Cucumber (pcs)'),
+          const ProductItem(label: 'Brocolli (pcs)'),
+          const ProductItem(label: 'Parsley (pcs)'),
+          const ProductItem(label: 'Garlic (pcs)'),
           Padding(
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
@@ -94,46 +93,5 @@ class VegetableItems extends StatelessWidget {
       'what': "whatever"
     };
     await docUser.set(json);
-  }
-
-  Widget _fruitItem(BuildContext context, String label) {
-    final textTheme = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-      child: Container(
-        decoration: BoxDecoration(
-          color: itemsBackColor,
-          border: Border.all(
-            color: const Color.fromARGB(134, 44, 44, 44),
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(45)),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 18.0),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: GetLogo(name: label),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 0),
-                child: Text(label, style: textTheme.headline6),
-              ),
-              const Spacer(),
-              const Icon(Icons.remove_circle_outlined, color: primaryColor),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text("1"),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(right: 25),
-                child: Icon(Icons.add_circle_outlined, color: primaryColor),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }

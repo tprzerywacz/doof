@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:doof_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
-
-import '../widgets/get_logo.dart';
 import '../styles.dart';
+import '../widgets/product_item.dart';
 
 class DrinkItems extends StatelessWidget {
   const DrinkItems({super.key});
@@ -35,9 +34,9 @@ class DrinkItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          _fruitItem(context, 'Water (50ml)'),
-          _fruitItem(context, 'Tea (50ml)'),
-          _fruitItem(context, 'Juice (50ml)'),
+          const ProductItem(label: 'Water (50ml)'),
+          const ProductItem(label: 'Tea (50ml)'),
+          const ProductItem(label: 'Juice (50ml)'),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -45,11 +44,11 @@ class DrinkItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          _fruitItem(context, 'Water (50ml)'),
-          _fruitItem(context, 'Juice (50ml)'),
-          _fruitItem(context, 'Alcohol (50ml)'),
-          _fruitItem(context, 'Coffee (50ml)'),
-          _fruitItem(context, 'Tea (50ml)'),
+          const ProductItem(label: 'Water (50ml)'),
+          const ProductItem(label: 'Juice (50ml)'),
+          const ProductItem(label: 'Alcohol (50ml)'),
+          const ProductItem(label: 'Coffee (50ml)'),
+          const ProductItem(label: 'Tea (50ml)'),
           Padding(
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
@@ -87,46 +86,5 @@ class DrinkItems extends StatelessWidget {
       'what': "whatever"
     };
     await docUser.set(json);
-  }
-
-  Widget _fruitItem(BuildContext context, String label) {
-    final textTheme = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-      child: Container(
-        decoration: BoxDecoration(
-          color: itemsBackColor,
-          border: Border.all(
-            color: const Color.fromARGB(134, 44, 44, 44),
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(45)),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 18.0),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: GetLogo(name: label),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 0),
-                child: Text(label, style: textTheme.headline6),
-              ),
-              const Spacer(),
-              const Icon(Icons.remove_circle_outlined, color: primaryColor),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text("1"),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(right: 25),
-                child: Icon(Icons.add_circle_outlined, color: primaryColor),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }

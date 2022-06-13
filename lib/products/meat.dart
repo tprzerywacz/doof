@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:doof_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
-
-import '../widgets/get_logo.dart';
 import '../styles.dart';
+import '../widgets/product_item.dart';
 
 class MeatItems extends StatelessWidget {
   const MeatItems({super.key});
@@ -35,9 +34,9 @@ class MeatItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          _fruitItem(context, 'Chicken (50g)'),
-          _fruitItem(context, 'Pork (50g)'),
-          _fruitItem(context, 'Fish (50g)'),
+          const ProductItem(label: 'Chicken (50g)'),
+          const ProductItem(label: 'Pork (50g)'),
+          const ProductItem(label: 'Fish (50g)'),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -45,12 +44,12 @@ class MeatItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          _fruitItem(context, 'Beef (50g)'),
-          _fruitItem(context, 'Pork (50g)'),
-          _fruitItem(context, 'Lamb (50g)'),
-          _fruitItem(context, 'Chicken (50g)'),
-          _fruitItem(context, 'Fish (50g)'),
-          _fruitItem(context, 'Sausage (50g)'),
+          const ProductItem(label: 'Beef (50g)'),
+          const ProductItem(label: 'Pork (50g)'),
+          const ProductItem(label: 'Lamb (50g)'),
+          const ProductItem(label: 'Chicken (50g)'),
+          const ProductItem(label: 'Fish (50g)'),
+          const ProductItem(label: 'Sausage (50g)'),
           Padding(
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
@@ -88,46 +87,5 @@ class MeatItems extends StatelessWidget {
       'what': "whatever"
     };
     await docUser.set(json);
-  }
-
-  Widget _fruitItem(BuildContext context, String label) {
-    final textTheme = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-      child: Container(
-        decoration: BoxDecoration(
-          color: itemsBackColor,
-          border: Border.all(
-            color: const Color.fromARGB(134, 44, 44, 44),
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(45)),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 18.0),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: GetLogo(name: label),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 0),
-                child: Text(label, style: textTheme.headline6),
-              ),
-              const Spacer(),
-              const Icon(Icons.remove_circle_outlined, color: primaryColor),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text("1"),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(right: 25),
-                child: Icon(Icons.add_circle_outlined, color: primaryColor),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }

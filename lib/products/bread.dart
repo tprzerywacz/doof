@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:doof_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
-
-import '../widgets/get_logo.dart';
 import '../styles.dart';
+import '../widgets/product_item.dart';
 
 class BreadItems extends StatelessWidget {
   const BreadItems({super.key});
@@ -35,9 +34,9 @@ class BreadItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          _fruitItem(context, 'White bread (50g)'),
-          _fruitItem(context, 'Rolls (pcs)'),
-          _fruitItem(context, 'Tortilla (50g)'),
+          const ProductItem(label: 'White bread (50g)'),
+          const ProductItem(label: 'Rolls (pcs)'),
+          const ProductItem(label: 'Tortilla (50g)'),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -45,15 +44,15 @@ class BreadItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          _fruitItem(context, 'White bread (50g)'),
-          _fruitItem(context, 'Whole grain bread (50g)'),
-          _fruitItem(context, 'Wheat bread (50g)'),
-          _fruitItem(context, 'Eye bread (50g)'),
-          _fruitItem(context, 'Rolls (pcs)'),
-          _fruitItem(context, 'Brench bread (50g)'),
-          _fruitItem(context, 'Hot dog bread (50g)'),
-          _fruitItem(context, 'Pretzel (50g)'),
-          _fruitItem(context, 'Tortilla (50g)'),
+          const ProductItem(label: 'White bread (50g)'),
+          const ProductItem(label: 'Whole grain bread (50g)'),
+          const ProductItem(label: 'Wheat bread (50g)'),
+          const ProductItem(label: 'Eye bread (50g)'),
+          const ProductItem(label: 'Rolls (pcs)'),
+          const ProductItem(label: 'Brench bread (50g)'),
+          const ProductItem(label: 'Hot dog bread (50g)'),
+          const ProductItem(label: 'Pretzel (50g)'),
+          const ProductItem(label: 'Tortilla (50g)'),
           Padding(
             padding: const EdgeInsets.all(20),
             child: ElevatedButton(
@@ -91,46 +90,5 @@ class BreadItems extends StatelessWidget {
       'what': "whatever"
     };
     await docUser.set(json);
-  }
-
-  Widget _fruitItem(BuildContext context, String label) {
-    final textTheme = Theme.of(context).textTheme;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-      child: Container(
-        decoration: BoxDecoration(
-          color: itemsBackColor,
-          border: Border.all(
-            color: const Color.fromARGB(134, 44, 44, 44),
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(45)),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 18.0),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: GetLogo(name: label),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 0),
-                child: Text(label, style: textTheme.headline6),
-              ),
-              const Spacer(),
-              const Icon(Icons.remove_circle_outlined, color: primaryColor),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text("1"),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(right: 25),
-                child: Icon(Icons.add_circle_outlined, color: primaryColor),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }

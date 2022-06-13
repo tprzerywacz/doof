@@ -9,7 +9,6 @@ class ReasonButton extends StatefulWidget {
 
 class _ReasonButtonState extends State<ReasonButton> {
   String dropdownValue = 'Too big groceries';
-
   get itemsBackColor => null;
 
   @override
