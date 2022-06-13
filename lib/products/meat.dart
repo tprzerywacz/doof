@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:doof_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/get_logo.dart';
 import '../styles.dart';
 
 class MeatItems extends StatelessWidget {
@@ -108,7 +108,7 @@ class MeatItems extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: _getLogo(context, label),
+                child: GetLogo(name: label),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -129,21 +129,5 @@ class MeatItems extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Widget _getLogo(BuildContext context, String name) {
-    Map<String, String> assetsMap = {
-      'Chicken (50g)': 'assets/hen.svg',
-      'Beef (50g)': 'assets/cattle.svg',
-      'Pork (50g)': 'assets/pig.svg',
-      'Lamb (50g)': 'assets/sheep.svg',
-      'Fish (50g)': 'assets/shark.svg',
-      'Sausage (50g)': 'assets/hotdog.svg'
-    };
-    final String assetName = assetsMap[name]!;
-    final Widget svg = SvgPicture.asset(
-      assetName,
-    );
-    return svg;
   }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:doof_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/get_logo.dart';
 import '../styles.dart';
 
 class VegetableItems extends StatelessWidget {
@@ -114,7 +114,7 @@ class VegetableItems extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: _getLogo(context, label),
+                child: GetLogo(name: label),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -135,26 +135,5 @@ class VegetableItems extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Widget _getLogo(BuildContext context, String name) {
-    Map<String, String> assetsMap = {
-      'Carrots (pcs)': 'assets/carrot.svg',
-      'Potatoes (pcs)': 'assets/potato.svg',
-      'Tomatoes (pcs)': 'assets/tomato.svg',
-      'Onion (pcs)': 'assets/onion.svg',
-      'Paprika (pcs)': 'assets/paprika.svg',
-      'Cabbage (pcs)': 'assets/cabbage.svg',
-      'Lettuce (pcs)': 'assets/lettuce.svg',
-      'Cucumber (pcs)': 'assets/cucumber.svg',
-      'Brocolli (pcs)': 'assets/broccoli.svg',
-      'Parsley (pcs)': 'assets/paprika.svg',
-      'Garlic (pcs)': 'assets/garlic.svg'
-    };
-    final String assetName = assetsMap[name]!;
-    final Widget svg = SvgPicture.asset(
-      assetName,
-    );
-    return svg;
   }
 }

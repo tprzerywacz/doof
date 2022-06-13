@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:doof_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/get_logo.dart';
 import '../styles.dart';
 
 class BreadItems extends StatelessWidget {
@@ -111,7 +111,7 @@ class BreadItems extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: _getLogo(context, label),
+                child: GetLogo(name: label),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -132,24 +132,5 @@ class BreadItems extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Widget _getLogo(BuildContext context, String name) {
-    Map<String, String> assetsMap = {
-      'White bread (50g)': 'assets/bread 2.svg',
-      'Whole grain bread (50g)': 'assets/bread 3.svg',
-      'Wheat bread (50g)': 'assets/bread 4.svg',
-      'Eye bread (50g)': 'assets/croissant.svg',
-      'Rolls (pcs)': 'assets/bread-roll.svg',
-      'Brench bread (50g)': 'assets/baguette.svg',
-      'Hot dog bread (50g)': 'assets/hotdog.svg',
-      'Pretzel (50g)': 'assets/pretzel.svg',
-      'Tortilla (50g)': 'assets/tortilla.svg',
-    };
-    final String assetName = assetsMap[name]!;
-    final Widget svg = SvgPicture.asset(
-      assetName,
-    );
-    return svg;
   }
 }

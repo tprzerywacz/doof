@@ -1,9 +1,9 @@
 import 'package:doof_app/stats.dart';
 import 'package:flutter/material.dart';
 import 'package:doof_app/styles.dart';
-import 'package:doof_app/this_week.dart';
-import 'package:doof_app/products.dart';
-import 'package:doof_app/my_profile.dart';
+import 'package:doof_app/default_screens/this_week.dart';
+import 'package:doof_app/default_screens/products.dart';
+import 'package:doof_app/default_screens/my_profile.dart';
 
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({Key? key}) : super(key: key);

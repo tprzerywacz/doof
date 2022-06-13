@@ -1,9 +1,10 @@
 import 'package:doof_app/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:doof_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
+
+import '../widgets/get_logo.dart';
 
 class FruitItems extends StatelessWidget {
   const FruitItems({super.key});
@@ -48,7 +49,7 @@ class FruitItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          _fruitItem(context, 'Arbuz 100g'),
+          _fruitItem(context, 'Watermelon 100g'),
           _fruitItem(context, 'Avocado (pcs)'),
           _fruitItem(context, 'Orange (pcs)'),
           _fruitItem(context, 'Peach (pcs)'),
@@ -109,7 +110,7 @@ class FruitItems extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: _getLogo(context, label),
+                child: GetLogo(name: label),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -130,22 +131,5 @@ class FruitItems extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Widget _getLogo(BuildContext context, String name) {
-    Map<String, String> assetsMap = {
-      'Meat': 'assets/chicken-leg.svg',
-      'Vegetables': 'assets/lettuce.svg',
-      'Orange (pcs)': 'assets/orange.svg',
-      'Lemon (pcs)': 'assets/lemon.svg',
-      'Peach (pcs)': 'assets/peach.svg',
-      'Arbuz 100g': 'assets/watermelon.svg',
-      'Avocado (pcs)': 'assets/avocado.svg'
-    };
-    final String assetName = assetsMap[name]!;
-    final Widget svg = SvgPicture.asset(
-      assetName,
-    );
-    return svg;
   }
 }

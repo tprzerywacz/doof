@@ -1,5 +1,5 @@
-import 'package:doof_app/register.dart';
-import 'package:doof_app/sing_in.dart';
+import 'package:doof_app/authentication/register.dart';
+import 'package:doof_app/authentication/sing_in.dart';
 import 'package:flutter/material.dart';
 
 

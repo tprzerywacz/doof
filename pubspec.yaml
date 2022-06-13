@@ -41,6 +41,7 @@ dependencies:
   cloud_firestore: ^3.1.17
   pie_chart: ^5.3.1
   charts_flutter: ^0.12.0
+  fl_chart: ^0.51.0
 
 dev_dependencies:
   flutter_test:
@@ -77,7 +78,6 @@ flutter:
     - assets/bread.svg
     - assets/bubble-tea.svg
     - assets/chicken-leg.svg
-    - assets/Group.svg
     - assets/lemon.svg
     - assets/lettuce.svg
     - assets/milk.svg
@@ -85,7 +85,9 @@ flutter:
     - assets/mustard.svg
     - assets/orange.svg
     - assets/peach.svg
-    - assets/recycle-bin.svg
+    - assets/recycle-bin-green.svg
+    - assets/recycle-bin-yellow.svg
+    - assets/recycle-bin-red.svg
     - assets/watermelon.svg
     - assets/baguette.svg
     - assets/bread 2.svg
@@ -127,6 +129,8 @@ flutter:
     - assets/groceries.svg
     - assets/honey.svg
     - assets/mushroom.svg
+    - assets/chips.svg
+    - assets/sweet-mustard.svg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -3,10 +3,13 @@ import 'package:doof_app/products/dairy.dart';
 import 'package:doof_app/products/drinks.dart';
 import 'package:doof_app/products/others.dart';
 import 'package:doof_app/products/vegetables.dart';
+import 'package:doof_app/styles.dart';
+import 'package:doof_app/summary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:doof_app/products/fruits.dart';
 import 'package:doof_app/products/meat.dart';
+
+import '../widgets/get_logo.dart';
 
 class Products extends StatelessWidget {
   const Products({super.key});
@@ -35,8 +38,11 @@ class Products extends StatelessWidget {
           case 'Bread':
             page = const Bread();
             break;
-          case 'Another':
-            page = const Another();
+          case 'Other':
+            page = const Other();
+            break;
+          case 'Summary':
+            page = const Checkout();
             break;
           default:
             break;
@@ -58,11 +64,13 @@ class Categories extends StatelessWidget {
           color: Color.fromARGB(255, 255, 255, 255),
         ),
         title: const Text("Products"),
-        backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+        backgroundColor: primaryColor,
       ),
-      body: Center(
-        child: Column(
-          children: [_categories(context)],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [_categories(context)],
+          ),
         ),
       ),
     );
@@ -86,7 +94,8 @@ class Categories extends StatelessWidget {
         _foodItem(context, 'Dairy', const Color.fromARGB(255, 94, 154, 211)),
         _foodItem(context, 'Drinks', const Color.fromARGB(255, 203, 211, 94)),
         _foodItem(context, 'Bread', const Color.fromARGB(255, 212, 144, 88)),
-        _foodItem(context, 'Another', const Color.fromARGB(255, 212, 204, 88)),
+        _foodItem(context, 'Other', const Color.fromARGB(255, 212, 204, 88)),
+        _foodItem(context, 'Summary', const Color.fromARGB(255, 212, 204, 88)),
       ],
     );
   }
@@ -115,7 +124,7 @@ class Categories extends StatelessWidget {
           child: Row(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _getLogo(context, label),
+              GetLogo(name: label),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Text(label, style: textTheme.headline6),
@@ -126,24 +135,6 @@ class Categories extends StatelessWidget {
       ),
     );
   }
-
-  Widget _getLogo(BuildContext context, String name) {
-    Map<String, String> assetsMap = {
-      'Meat': 'assets/chicken-leg.svg',
-      'Vegetables': 'assets/lettuce.svg',
-      'Fruits': 'assets/orange.svg',
-      'Dairy': 'assets/milk.svg',
-      'Drinks': 'assets/bubble-tea.svg',
-      'Bread': 'assets/bread.svg',
-      'Another': 'assets/mustard.svg',
-      'Avocado': 'assets/avocado.svg'
-    };
-    final String assetName = assetsMap[name]!;
-    final Widget svg = SvgPicture.asset(
-      assetName,
-    );
-    return svg;
-  }
 }
 
 class Meat extends StatelessWidget {
@@ -152,7 +143,7 @@ class Meat extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+          backgroundColor: primaryColor,
           title: const Text('Meat'),
         ),
         body: const MeatItems(),
@@ -165,7 +156,7 @@ class Vegetables extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+          backgroundColor: primaryColor,
           title: const Text('Vegetables'),
         ),
         body: const VegetableItems(),
@@ -178,7 +169,7 @@ class Fruits extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+          backgroundColor: primaryColor,
           title: const Text('Fruits'),
         ),
         body: const FruitItems(),
@@ -191,7 +182,7 @@ class Dairy extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+          backgroundColor: primaryColor,
           title: const Text('Vegetables'),
         ),
         body: const DairyItems(),
@@ -204,7 +195,7 @@ class Drinks extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+          backgroundColor: primaryColor,
           title: const Text('Drinks'),
         ),
         body: const DrinkItems(),
@@ -217,22 +208,41 @@ class Bread extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 0, 160, 130),
+          backgroundColor: primaryColor,
           title: const Text('Bread'),
         ),
         body: const BreadItems(),
       );
 }
 
-class Another extends StatelessWidget {
-  const Another({Key? key}) : super(key: key);
+class Other extends StatelessWidget {
+  const Other({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 0, 160, 130),
-          title: const Text('Another'),
+          backgroundColor: primaryColor,
+          title: const Text('Other'),
         ),
-        body: const AnotherItems(),
+        body: const OtherItems(),
+      );
+}
+
+class Checkout extends StatelessWidget {
+  const Checkout({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+            backgroundColor: primaryColor,
+            title: const Text('Summary'),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons
+                    .delete), //https://www.freecodecamp.org/news/how-to-add-custom-icons-to-your-flutter-application/
+                onPressed: () {},
+              ),
+            ]),
+        body: const Summary(),
       );
 }

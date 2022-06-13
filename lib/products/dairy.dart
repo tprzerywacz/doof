@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:doof_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/get_logo.dart';
 import '../styles.dart';
 
 class DairyItems extends StatelessWidget {
@@ -108,7 +108,7 @@ class DairyItems extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: _getLogo(context, label),
+                child: GetLogo(name: label),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -129,21 +129,5 @@ class DairyItems extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Widget _getLogo(BuildContext context, String name) {
-    Map<String, String> assetsMap = {
-      'Cheese (50g)': 'assets/cheese.svg',
-      'Yoghurt (50g)': 'assets/yoghurt.svg',
-      'Milk (50ml)': 'assets/milk.svg',
-      'Milk desserts (50g)': 'assets/milkshake.svg',
-      'Cream (50ml)': 'assets/milkshake.svg',
-      'Butter (50g)': 'assets/butter.svg'
-    };
-    final String assetName = assetsMap[name]!;
-    final Widget svg = SvgPicture.asset(
-      assetName,
-    );
-    return svg;
   }
 }

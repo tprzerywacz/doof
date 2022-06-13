@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:doof_app/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/get_logo.dart';
 import '../styles.dart';
 
-class AnotherItems extends StatelessWidget {
-  const AnotherItems({super.key});
+class OtherItems extends StatelessWidget {
+  const OtherItems({super.key});
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<MyUser?>(context);
@@ -47,14 +47,12 @@ class AnotherItems extends StatelessWidget {
           ),
           _fruitItem(context, 'Prawns (50g)'),
           _fruitItem(context, 'Egg (pcs)'),
-          _fruitItem(context, 'Ketchup (50g)'),
-          _fruitItem(context, 'Mustard (50g)'),
+          _fruitItem(context, 'Ketchup or mustard (50g)'),
           _fruitItem(context, 'Cookies (50g)'),
           _fruitItem(context, 'Candy (50g)'),
           _fruitItem(context, 'Honey (50g)'),
           _fruitItem(context, 'Fries (50g)'),
           _fruitItem(context, 'Chips (50g)'),
-          _fruitItem(context, 'Crisps (50g)'),
           _fruitItem(context, 'Mushrooms (50g)'),
           Padding(
             padding: const EdgeInsets.all(20),
@@ -113,7 +111,7 @@ class AnotherItems extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: _getLogo(context, label),
+                child: GetLogo(name: label),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -134,26 +132,5 @@ class AnotherItems extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Widget _getLogo(BuildContext context, String name) {
-    Map<String, String> assetsMap = {
-      'Prawns (50g)': 'assets/prawn.svg',
-      'Egg (pcs)': 'assets/egg.svg',
-      'Ketchup (50g)': 'assets/mustard.svg',
-      'Mustard (50g)': 'assets/mustard.svg',
-      'Cookies (50g)': 'assets/cookie.svg',
-      'Candy (50g)': 'assets/candy.svg',
-      'Honey (50g)': 'assets/honey.svg',
-      'Fries (50g)': 'assets/fries.svg',
-      'Chips (50g)': 'assets/groceries.svg',
-      'Crisps (50g)': 'assets/groceries.svg',
-      'Mushrooms (50g)': 'assets/mushroom.svg',
-    };
-    final String assetName = assetsMap[name]!;
-    final Widget svg = SvgPicture.asset(
-      assetName,
-    );
-    return svg;
   }
 }
