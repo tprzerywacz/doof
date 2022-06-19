@@ -1,10 +1,12 @@
 library doof_app.globals;
 
+import 'package:doof_app/default_screens/home.dart';
 import 'package:flutter/foundation.dart';
 
 import 'models/summary_item.dart';
 
 final summaryItems = SummaryItemsRepository();
+final homeNavigation = HomeNavigation();
 
 class SummaryItemsRepository with ChangeNotifier {
   List<SummaryItem> tempItems = [];

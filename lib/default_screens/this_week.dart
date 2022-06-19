@@ -2,6 +2,7 @@ import 'package:doof_app/advices.dart';
 import 'package:doof_app/styles.dart';
 import 'package:flutter/material.dart';
 import '../widgets/get_logo.dart';
+import 'package:doof_app/globals.dart' as globals;
 
 class ThisWeek extends StatelessWidget {
   const ThisWeek({super.key});
@@ -36,7 +37,11 @@ class ThisWeek extends StatelessWidget {
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
             ),
-            const GetLogo(name: 'Green'),
+            InkWell(
+              customBorder: const CircleBorder(),
+              onTap: () => globals.homeNavigation.updateIndex(2),
+              child: const GetLogo(name: 'Green'),
+            ),
             // const GetLogo(name: 'Yellow'),
             // const GetLogo(name: 'Red'),
             Padding(
@@ -46,8 +51,7 @@ class ThisWeek extends StatelessWidget {
                       border: Border.all(
                         color: const Color.fromARGB(134, 44, 44, 44),
                       ),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(10))),
+                      borderRadius: const BorderRadius.all(Radius.circular(10))),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -55,11 +59,9 @@ class ThisWeek extends StatelessWidget {
                       children: [
                         const Text(
                           'Statistics',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        _buildRow(context, "Lettuce",
-                            "You threw out 10% more vegetables last week"),
+                        _buildRow(context, "Lettuce", "You threw out 10% more vegetables last week"),
                         _buildRow(context, "Money", "You lost 120 zł"),
                       ],
                     ),
@@ -74,8 +76,7 @@ class ThisWeek extends StatelessWidget {
                       border: Border.all(
                         color: const Color.fromARGB(134, 44, 44, 44),
                       ),
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(10))),
+                      borderRadius: const BorderRadius.all(Radius.circular(10))),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -83,8 +84,7 @@ class ThisWeek extends StatelessWidget {
                       children: const [
                         Text(
                           'Recommendations',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         Advice(),
                         Advice(),

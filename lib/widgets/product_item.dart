@@ -54,47 +54,65 @@ class _ProductItemState extends State<ProductItem> {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 5.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
-                    child: GetLogo(name: widget.label),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 0),
-                    child: Text(widget.label, style: textTheme.headline6),
-                  ),
-                  const Spacer(),
-                  IconButton(
-                    onPressed: () {
-                      setState(
-                        () {
-                          if (count > 0) {
-                            count = count - 1;
-                            globals.summaryItems.updateTempItem(widget.label, count);
-                            widget.notifyParent();
-                          }
-                        },
-                      );
-                    },
-                    icon: Icon(Icons.remove_circle_outlined, color: btnColor),
-                  ),
-                  Text(count.toString()),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: IconButton(
-                      onPressed: () {
-                        setState(
-                          () {
-                            count = count + 1;
-                            globals.summaryItems.updateTempItem(widget.label, count);
-                            widget.notifyParent();
-                            btnColor = primaryColor;
-                          },
-                        );
-                      },
-                      icon: const Icon(Icons.add_circle_outlined, color: primaryColor),
+                  Flexible(
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 25),
+                          child: GetLogo(name: widget.label),
+                        ),
+                        Flexible(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 0),
+                            child: Text(
+                              widget.label,
+                              style: textTheme.headline6,
+                              maxLines: 2,
+                              overflow: TextOverflow.fade,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  )
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          setState(
+                            () {
+                              if (count > 0) {
+                                count = count - 1;
+                                globals.summaryItems.updateTempItem(widget.label, count);
+                                widget.notifyParent();
+                              }
+                            },
+                          );
+                        },
+                        icon: Icon(Icons.remove_circle_outlined, color: btnColor),
+                      ),
+                      Text(count.toString()),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: IconButton(
+                          onPressed: () {
+                            setState(
+                              () {
+                                count = count + 1;
+                                globals.summaryItems.updateTempItem(widget.label, count);
+                                widget.notifyParent();
+                                btnColor = primaryColor;
+                              },
+                            );
+                          },
+                          icon: const Icon(Icons.add_circle_outlined, color: primaryColor),
+                        ),
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),

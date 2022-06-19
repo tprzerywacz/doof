@@ -4,6 +4,16 @@ import 'package:doof_app/styles.dart';
 import 'package:doof_app/default_screens/this_week.dart';
 import 'package:doof_app/default_screens/products.dart';
 import 'package:doof_app/default_screens/my_profile.dart';
+import 'package:doof_app/globals.dart' as globals;
+
+class HomeNavigation with ChangeNotifier {
+  int selectedIndex = 0;
+
+  void updateIndex(int index) {
+    selectedIndex = index;
+    notifyListeners();
+  }
+}
 
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({Key? key}) : super(key: key);
@@ -15,45 +25,27 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   bool btnVisibility = true;
 
-  void _incrementCounter() {
-    setState(() {
+  @override
+  void initState() {
+    super.initState();
+    globals.homeNavigation.addListener(_onScreenChanged);
+  }
 
-      _onItemTapped(1);
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
+  void _onScreenChanged() {
+    setState(() {
+      btnVisibility = globals.homeNavigation.selectedIndex == 0;
     });
   }
 
-  int _selectedIndex = 0;
-  final List<Widget> _widgetOptions = <Widget>[
-    const ThisWeek(),
-    const Products(),
-    const Statistics(),
-    MyProfile()
-  ];
+  final List<Widget> _widgetOptions = <Widget>[const ThisWeek(), const Products(), const Statistics(), MyProfile()];
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      btnVisibility = index == 0;
-    });
-  }
-
-  List<String> appBarText = const [
-    'This week',
-    'Products',
-    'Stats',
-    'My profile'
-  ];
+  List<String> appBarText = const ['This week', 'Products', 'Stats', 'My profile'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _widgetOptions.elementAt(globals.homeNavigation.selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -76,12 +68,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             label: 'My profile',
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: globals.homeNavigation.selectedIndex,
         selectedItemColor: customOrange,
         unselectedItemColor: const Color.fromARGB(255, 255, 255, 255),
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        onTap: _onItemTapped,
+        onTap: globals.homeNavigation.updateIndex,
       ),
       // appBar: AppBar(
       //   leading: const BackButton(
@@ -94,7 +86,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         visible: btnVisibility, // Set it to false
         child: FloatingActionButton(
           backgroundColor: primaryColor,
-          onPressed: _incrementCounter,
+          onPressed: () => globals.homeNavigation.updateIndex(1),
           tooltip: 'Throw some food',
           child: const Icon(Icons.delete),
         ),
