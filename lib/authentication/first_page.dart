@@ -14,10 +14,12 @@ class FirstPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          SvgPicture.asset(
-            'assets/background.svg',
-            fit: BoxFit.cover,
-            alignment: Alignment.topCenter,
+          Expanded(
+            child: SvgPicture.asset(
+              'assets/background.svg',
+              fit: BoxFit.cover,
+              alignment: Alignment.topCenter,
+            ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
