@@ -37,7 +37,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     });
   }
 
-  final List<Widget> _widgetOptions = <Widget>[const ThisWeek(), const Products(), const Statistics(), MyProfile()];
+  final List<Widget> _widgetOptions = <Widget>[ThisWeek(), const Products(), const Statistics(), MyProfile()];
 
   List<String> appBarText = const ['This week', 'Products', 'Stats', 'My profile'];
 
