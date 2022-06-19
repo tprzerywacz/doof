@@ -131,6 +131,22 @@ flutter:
     - assets/mushroom.svg
     - assets/chips.svg
     - assets/sweet-mustard.svg
+    - assets/avocado 3.svg
+    - assets/banana.svg
+    - assets/berries.svg
+    - assets/cherries.svg
+    - assets/grapes.svg
+    - assets/kiwi.svg
+    - assets/lychee.svg
+    - assets/mango.svg
+    - assets/papaya.svg
+    - assets/pear.svg
+    - assets/pineapple.svg
+    - assets/plum.svg
+    - assets/pomegranate.svg
+    - assets/raspberry.svg
+    - assets/strawberry.svg
+    - assets/tangerine.svg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

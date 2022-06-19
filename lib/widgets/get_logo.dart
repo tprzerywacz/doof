@@ -41,7 +41,7 @@ class GetLogo extends StatelessWidget {
       'Orange (pcs)': 'assets/orange.svg',
       'Lemon (pcs)': 'assets/lemon.svg',
       'Peach (pcs)': 'assets/peach.svg',
-      'Watermelon 100g': 'assets/watermelon.svg',
+      'Watermelon (50g)': 'assets/watermelon.svg',
       'Avocado (pcs)': 'assets/avocado.svg',
       'Chicken (50g)': 'assets/hen.svg',
       'Beef (50g)': 'assets/cattle.svg',
@@ -74,8 +74,24 @@ class GetLogo extends StatelessWidget {
       'Red': 'assets/recycle-bin-red.svg',
       'Lettuce': 'assets/lettuce.svg',
       'Money': 'assets/money.svg',
+      //'Avocado (pcs)': 'assets/avocado 3.svg',
+      'Banana (pcs)': 'assets/banana.svg',
+      'Berries (50g)': 'assets/berries.svg',
+      'Cherries (50g)': 'assets/cherries.svg',
+      'Grapes (50g)': 'assets/grapes.svg',
+      'Kiwi (pcs)': 'assets/kiwi.svg',
+      'Lychee (pcs)': 'assets/lychee.svg',
+      'Mango (pcs)': 'assets/mango.svg',
+      'Papaya (pcs)': 'assets/papaya.svg',
+      'Pear (pcs)': 'assets/pear.svg',
+      'Pineapple (pcs)': 'assets/pineapple.svg',
+      'Plum (50g)': 'assets/plum.svg',
+      'Pomegranate (pcs)': 'assets/pomegranate.svg',
+      'Raspberry (50g)': 'assets/raspberry.svg',
+      'Strawberry (50g)': 'assets/strawberry.svg',
+      'Tangerine (50g)': 'assets/tangerine.svg',
     };
-
+    
     final String assetName = assetsMap[name]!;
     final Widget svg = SvgPicture.asset(
       assetName,
