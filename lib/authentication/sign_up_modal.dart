@@ -4,7 +4,7 @@ import 'package:doof_app/services/auth.dart';
 import 'package:doof_app/styles.dart';
 import 'package:flutter/material.dart';
 
-enum PgState { welcome, login, register, profile }
+final _emailRegex = RegExp(r'^[a-zA-Z\.\-]{3,}@[a-zA-Z\.\-]{2,}$');
 
 class SignUpModal extends StatefulWidget {
   const SignUpModal({
@@ -75,7 +75,7 @@ class _SignUpModalState extends State<SignUpModal> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
           child: TextFormField(
-            validator: (String? val) => val != null && val.length < 6 ? 'Enter password 6+ long' : null,
+            validator: (String? val) => !_emailRegex.hasMatch(val ?? "") ? 'Enter valid email' : null,
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.person_outline_sharp),
               filled: true,
@@ -102,6 +102,7 @@ class _SignUpModalState extends State<SignUpModal> {
               filled: true,
             ),
             controller: password,
+            validator: (String? val) => val != null && val.length < 6 ? 'Enter password 6+ long' : null,
           ),
         ),
         Padding(
@@ -112,7 +113,11 @@ class _SignUpModalState extends State<SignUpModal> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: () => _goToPage(2),
+                    onTap: () {
+                      if (_formKey.currentState?.validate() ?? false) {
+                        _goToPage(2);
+                      }
+                    },
                     child: const Text(
                       "Next",
                       style: TextStyle(
