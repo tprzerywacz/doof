@@ -12,6 +12,31 @@ import 'package:doof_app/products/meat.dart';
 import '../widgets/get_logo.dart';
 import '../globals.dart' as globals;
 
+abstract class _Layout extends StatelessWidget {
+  const _Layout({Key? key}) : super(key: key);
+
+  Widget get child;
+  String get title;
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () async {
+        globals.summaryItems.clearTempItems();
+        return true;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: primaryColor,
+          title: Text(title),
+          actions: const [GarbageSummaryIcon()],
+        ),
+        body: child,
+      ),
+    );
+  }
+}
+
 class Products extends StatefulWidget {
   const Products({Key? key}) : super(key: key);
   @override
@@ -19,41 +44,40 @@ class Products extends StatefulWidget {
 }
 
 class _ProductsState extends State<Products> {
-
   @override
   Widget build(BuildContext context) {
     return Navigator(
       onGenerateRoute: (settings) {
         Widget page = const Categories();
 
-          switch (settings.name) {
-            case 'Meat':
-              page = const Meat();
-              break;
-            case 'Vegetables':
-              page = const Vegetables();
-              break;
-            case 'Fruits':
-              page = const Fruits();
-              break;
-            case 'Dairy':
-              page = const Dairy();
-              break;
-            case 'Drinks':
-              page = const Drinks();
-              break;
-            case 'Bread':
-              page = const Bread();
-              break;
-            case 'Other':
-              page = const Other();
-              break;
-            case 'Summary':
-              page = const Checkout();
-              break;
-            default:
-              break;
-          }
+        switch (settings.name) {
+          case 'Meat':
+            page = const Meat();
+            break;
+          case 'Vegetables':
+            page = const Vegetables();
+            break;
+          case 'Fruits':
+            page = const Fruits();
+            break;
+          case 'Dairy':
+            page = const Dairy();
+            break;
+          case 'Drinks':
+            page = const Drinks();
+            break;
+          case 'Bread':
+            page = const Bread();
+            break;
+          case 'Other':
+            page = const Other();
+            break;
+          case 'Summary':
+            page = const Checkout();
+            break;
+          default:
+            break;
+        }
         return MaterialPageRoute(builder: (_) => page);
       },
     );
@@ -72,6 +96,7 @@ class Categories extends StatelessWidget {
         ),
         title: const Text("Products"),
         backgroundColor: primaryColor,
+        actions: const [GarbageSummaryIcon()],
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -95,8 +120,7 @@ class Categories extends StatelessWidget {
           ),
         ),
         _foodItem(context, 'Meat', const Color.fromARGB(255, 206, 154, 86)),
-        _foodItem(
-            context, 'Vegetables', const Color.fromARGB(255, 107, 204, 104)),
+        _foodItem(context, 'Vegetables', const Color.fromARGB(255, 107, 204, 104)),
         _foodItem(context, 'Fruits', const Color.fromARGB(255, 211, 102, 94)),
         _foodItem(context, 'Dairy', const Color.fromARGB(255, 94, 154, 211)),
         _foodItem(context, 'Drinks', const Color.fromARGB(255, 203, 211, 94)),
@@ -118,13 +142,11 @@ class Categories extends StatelessWidget {
             const TextStyle(fontSize: 18),
           ),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(17.0),
-                side: BorderSide(color: borderColor)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(17.0), side: BorderSide(color: borderColor)),
           ),
         ),
         onPressed: () => {
-          globals.tempItems.clear(),
+          globals.summaryItems.clearTempItems(),
           Navigator.pushNamed(context, label),
         },
         child: Padding(
@@ -145,111 +167,115 @@ class Categories extends StatelessWidget {
   }
 }
 
-class Meat extends StatelessWidget {
+class Meat extends _Layout {
   const Meat({Key? key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          title: const Text('Meat'),
-        ),
-        body: const MeatItems(),
-      );
+  String get title => 'Meat';
+  @override
+  Widget get child => const MeatItems();
 }
 
-class Vegetables extends StatelessWidget {
+class Vegetables extends _Layout {
   const Vegetables({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          title: const Text('Vegetables'),
-        ),
-        body: const VegetableItems(),
-      );
+  String get title => 'Vegetables';
+  @override
+  Widget get child => const VegetableItems();
 }
 
-class Fruits extends StatelessWidget {
+class Fruits extends _Layout {
   const Fruits({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          title: const Text('Fruits'),
-        ),
-        body: const FruitItems(),
-      );
+  String get title => 'Fruits';
+  @override
+  Widget get child => const FruitItems();
 }
 
-class Dairy extends StatelessWidget {
+class Dairy extends _Layout {
   const Dairy({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          title: const Text('Vegetables'),
-        ),
-        body: const DairyItems(),
-      );
+  String get title => 'Dairy';
+  @override
+  Widget get child => const DairyItems();
 }
 
-class Drinks extends StatelessWidget {
+class Drinks extends _Layout {
   const Drinks({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          title: const Text('Drinks'),
-        ),
-        body: const DrinkItems(),
-      );
+  String get title => 'Drinks';
+  @override
+  Widget get child => const DrinkItems();
 }
 
-class Bread extends StatelessWidget {
+class Bread extends _Layout {
   const Bread({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          title: const Text('Bread'),
-        ),
-        body: const BreadItems(),
-      );
+  String get title => 'Bread';
+  @override
+  Widget get child => const BreadItems();
 }
 
-class Other extends StatelessWidget {
+class Other extends _Layout {
   const Other({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: primaryColor,
-          title: const Text('Other'),
-        ),
-        body: const OtherItems(),
-      );
+  String get title => 'Other';
+  @override
+  Widget get child => const OtherItems();
 }
 
-class Checkout extends StatelessWidget {
+class Checkout extends _Layout {
   const Checkout({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-            backgroundColor: primaryColor,
-            title: const Text('Summary'),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons
-                    .delete), //https://www.freecodecamp.org/news/how-to-add-custom-icons-to-your-flutter-application/
-                onPressed: () {},
+  String get title => 'Summary';
+  @override
+  Widget get child => const Summary();
+}
+
+class GarbageSummaryIcon extends StatelessWidget {
+  const GarbageSummaryIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        IconButton(
+          icon: const GetLogo(name: 'small_bin'),
+          onPressed: () {
+            globals.summaryItems.moveToTrash();
+            Navigator.pushNamed(context, 'Summary');
+          },
+        ),
+        AnimatedBuilder(
+          animation: globals.summaryItems,
+          builder: (context, snapshot) {
+            return Positioned(
+              top: 5,
+              right: 5,
+              child: Container(
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+                alignment: Alignment.center,
+                width: 18,
+                height: 18,
+                child: Text(
+                  "${globals.summaryItems.count}",
+                  style: const TextStyle(color: Colors.red),
+                ),
               ),
-            ]),
-        body: const Summary(),
-      );
+            );
+          },
+        ),
+      ],
+    );
+  }
 }

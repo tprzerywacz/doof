@@ -14,18 +14,17 @@ class _MeatItemsState extends State<MeatItems> {
   @override
   Widget build(BuildContext context) {
     count = 0;
-    for (var item in globals.tempItems) {
+    for (var item in globals.summaryItems.tempItems) {
       count += item.quantity;
     }
 
     refresh() {
       count = 0;
-        for (var item in globals.tempItems) {
-          count += item.quantity;
-        }
+      for (var item in globals.summaryItems.tempItems) {
+        count += item.quantity;
+      }
 
-      setState(() {
-      });
+      setState(() {});
     }
 
     return SingleChildScrollView(

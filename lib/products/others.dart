@@ -14,13 +14,13 @@ class _OtherItemsState extends State<OtherItems> {
   @override
   Widget build(BuildContext context) {
     count = 0;
-    for (var item in globals.tempItems) {
+    for (var item in globals.summaryItems.tempItems) {
       count += item.quantity;
     }
 
     refresh() {
       count = 0;
-      for (var item in globals.tempItems) {
+      for (var item in globals.summaryItems.tempItems) {
         count += item.quantity;
       }
 
@@ -71,7 +71,7 @@ class _OtherItemsState extends State<OtherItems> {
           ProductItem(label: 'Chips (50g)', notifyParent: refresh),
           // ProductItem(label: 'Mushrooms (50g)', notifyParent: refresh),
           NextButton(count: count),
-          ],
+        ],
       ),
     );
   }

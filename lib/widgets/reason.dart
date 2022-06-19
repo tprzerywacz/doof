@@ -39,7 +39,7 @@ class _ReasonButtonState extends State<ReasonButton> {
             onChanged: (String? newValue) {
               setState(() {
                 dropdownValue = newValue!;
-                globals.updateItemsReason(widget.name, dropdownValue);
+                globals.summaryItems.updateItemsReason(widget.name, dropdownValue);
               });
             },
             items: <String>[

@@ -19,7 +19,7 @@ class _SummaryState extends State<Summary> {
   @override
   Widget build(BuildContext context) {
     count = 0;
-    for (var item in globals.summaryItems) {
+    for (var item in globals.summaryItems.items) {
       count += item.quantity;
     }
 
@@ -50,11 +50,9 @@ class _SummaryState extends State<Summary> {
     );
   }
 
-  Widget _backHomeButton()
-  {
-    return
-    Padding(
-      padding: const EdgeInsets.only(left:20, right: 20, top: 40),
+  Widget _backHomeButton() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 40),
       child: ElevatedButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(customOrange),
@@ -63,8 +61,7 @@ class _SummaryState extends State<Summary> {
           ),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(44.0),
-                side: const BorderSide(color: customOrange)),
+                borderRadius: BorderRadius.circular(44.0), side: const BorderSide(color: customOrange)),
           ),
         ),
         onPressed: () {
@@ -81,7 +78,7 @@ class _SummaryState extends State<Summary> {
   Widget _garbageCan() {
     refresh() {
       setState(() {
-        for (var item in globals.summaryItems) {
+        for (var item in globals.summaryItems.items) {
           count += item.quantity;
         }
       });
@@ -101,10 +98,7 @@ class _SummaryState extends State<Summary> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: Column(
-              children: [
-                for (var item in globals.summaryItems)
-                  _getItem(context, item.name, item.quantity)
-              ],
+              children: [for (var item in globals.summaryItems.items) _getItem(context, item.name, item.quantity)],
             ),
           ),
           //const Spacer(),

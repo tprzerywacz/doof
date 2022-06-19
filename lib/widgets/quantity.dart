@@ -47,7 +47,7 @@ class _QuantityState extends State<Quantity> {
             () {
               if (widget.pcs > 0) {
                 pcs = widget.pcs - 1;
-                globals.updateItemsQuanitity(widget.name, pcs);
+                globals.summaryItems.updateItemsQuanitity(widget.name, pcs);
                 widget.notifyParent();
               }
             },
@@ -64,7 +64,7 @@ class _QuantityState extends State<Quantity> {
               () {
                 pcs = widget.pcs + 1;
                 btnColor = primaryColor;
-                globals.updateItemsQuanitity(widget.name, widget.pcs);
+                globals.summaryItems.updateItemsQuanitity(widget.name, widget.pcs);
                 widget.notifyParent();
               },
             );

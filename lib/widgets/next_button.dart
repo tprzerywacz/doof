@@ -18,12 +18,11 @@ class NextButton extends StatelessWidget {
           ),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(44.0),
-                side: const BorderSide(color: customOrange)),
+                borderRadius: BorderRadius.circular(44.0), side: const BorderSide(color: customOrange)),
           ),
         ),
         onPressed: () {
-          addToTrash();
+          globals.summaryItems.moveToTrash();
           Navigator.pushNamed(context, 'Summary');
         },
         child: Padding(
@@ -32,12 +31,5 @@ class NextButton extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future addToTrash() async {
-    for (var item in globals.tempItems) {
-      globals.summaryItems.add(item);
-    }
-    globals.tempItems.clear();
   }
 }

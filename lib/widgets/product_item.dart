@@ -55,7 +55,7 @@ class _ProductItemState extends State<ProductItem> {
                     () {
                       if (count > 0) {
                         count = count - 1;
-                        globals.updateTempItem(widget.label, count);
+                        globals.summaryItems.updateTempItem(widget.label, count);
                         widget.notifyParent();
                       }
                     },
@@ -71,14 +71,13 @@ class _ProductItemState extends State<ProductItem> {
                     setState(
                       () {
                         count = count + 1;
-                        globals.updateTempItem(widget.label, count);
+                        globals.summaryItems.updateTempItem(widget.label, count);
                         widget.notifyParent();
                         btnColor = primaryColor;
                       },
                     );
                   },
-                  icon: const Icon(Icons.add_circle_outlined,
-                      color: primaryColor),
+                  icon: const Icon(Icons.add_circle_outlined, color: primaryColor),
                 ),
               )
             ],

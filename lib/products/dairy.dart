@@ -14,13 +14,13 @@ class _DairyItemsState extends State<DairyItems> {
   @override
   Widget build(BuildContext context) {
     count = 0;
-    for (var item in globals.tempItems) {
+    for (var item in globals.summaryItems.tempItems) {
       count += item.quantity;
     }
 
     refresh() {
       count = 0;
-      for (var item in globals.tempItems) {
+      for (var item in globals.summaryItems.tempItems) {
         count += item.quantity;
       }
 
@@ -68,7 +68,7 @@ class _DairyItemsState extends State<DairyItems> {
           ProductItem(label: 'Cream (50ml)', notifyParent: refresh),
           // ProductItem(label: 'Butter (50g)', notifyParent: refresh),
           NextButton(count: count),
-],
+        ],
       ),
     );
   }

@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../globals.dart' as globals;
 
-
 class FinishButton extends StatelessWidget {
   final int count;
   final Function() notifyParent;
@@ -25,14 +24,13 @@ class FinishButton extends StatelessWidget {
           ),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(44.0),
-                side: const BorderSide(color: customOrange)),
+                borderRadius: BorderRadius.circular(44.0), side: const BorderSide(color: customOrange)),
           ),
         ),
         onPressed: () {
           finishCheckout(uid: user!.uid);
           notifyParent();
-          },
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 22.0),
           child: Text("Finish and save (${count.toString()})"),
@@ -40,13 +38,12 @@ class FinishButton extends StatelessWidget {
       ),
     );
   }
-  void finishCheckout({required uid})
-  {
-    for(var item in globals.summaryItems)
-    {
+
+  void finishCheckout({required uid}) {
+    for (var item in globals.summaryItems.items) {
       addToFirestore(uid: uid, item: item);
     }
-    globals.summaryItems.clear();
+    globals.summaryItems.clearItems();
   }
 
   Future addToFirestore({required uid, required SummaryItem item}) async {
