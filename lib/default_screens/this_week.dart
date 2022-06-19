@@ -66,7 +66,7 @@ class ThisWeek extends StatelessWidget {
                   ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 85),
               child: Container(
                   decoration: BoxDecoration(
                       border: Border.all(
@@ -78,15 +78,15 @@ class ThisWeek extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Text(
+                      children: const [
+                        Text(
                           'Recommendations',
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        _buildRow(context, "Lettuce",
-                            "Tutaj miejsce na swietną radę"),
-                        const Advice(),
+                        Advice(),
+                        Advice(),
+                        Advice(),
                       ],
                     ),
                   )

@@ -4,6 +4,29 @@ import 'dart:math';
 import 'widgets/get_logo.dart';
 
 class Advice extends StatefulWidget {
+  static const List<String> logos = [
+    'shopping_list',
+    'cart',
+    'check_list',
+    'fridge',
+    'Cheese (50g)',
+    'date',
+    'bank',
+    'paper_meat',
+    'hot_water',
+    'leftover',
+    'bread',
+    'apple',
+    'Brocolli (pcs)',
+    'herbs',
+    'Orange (pcs)',
+    'Banana (pcs)',
+    'small_bin',
+    'husky',
+    'jam',
+    'zero_bin',
+  ];
+
   static const List<String> titles = [
     'Don\'t go shopping without a list!',
     'Only buy what you need',
@@ -58,19 +81,20 @@ class Advice extends StatefulWidget {
 
 class _AdviceState extends State<Advice> {
   final _random = Random();
+  bool visible = false;
+  Icon icon = const Icon(Icons.expand_more);
 
   int getIndex(int min, int max) => min + _random.nextInt(max - min);
 
-  late int index = 0;
+  late int index = getIndex(0, 20);
 
   @override
   Widget build(BuildContext context) {
-    index = getIndex(0, 20);
+    //index = getIndex(0, 20);
     return Column(
       children: [
-        _buildRow(context, "Lettuce", Advice.titles[index]),
-        Text(Advice.description[index])
-        //https://stackoverflow.com/questions/61217431/is-it-possible-to-show-hide-textformfields-in-flutter-based-on-a-checkbox
+        _buildRow(context, Advice.logos[index], Advice.titles[index]),
+        if (visible) Text(Advice.description[index])
       ],
     );
   }
@@ -86,6 +110,19 @@ class _AdviceState extends State<Advice> {
             padding: const EdgeInsets.all(8.0),
             child: Text(value),
           ),
+          const Spacer(),
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  visible = !visible;
+                  if (visible) {
+                    icon = const Icon(Icons.expand_less);
+                  } else {
+                    icon = const Icon(Icons.expand_more);
+                  }
+                });
+              },
+              icon: icon)
         ],
       ),
     );

@@ -148,6 +148,23 @@ flutter:
     - assets/strawberry.svg
     - assets/tangerine.svg
     - assets/successful.svg
+    - assets/apple.svg
+    - assets/bank.svg
+    - assets/bread 5.svg
+    - assets/cart.svg
+    - assets/check-list.svg
+    - assets/date.svg
+    - assets/fridge.svg
+    - assets/hot-water.svg
+    - assets/jam.svg
+    - assets/leftover.svg
+    - assets/paper_meat.svg
+    - assets/recycling_bin_zero.svg
+    - assets/remedy.svg
+    - assets/shopping_list.svg
+    - assets/siberian_husky.svg
+    - assets/small_green_bin.svg
+    - assets/herbs.svg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
