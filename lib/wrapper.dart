@@ -1,4 +1,5 @@
 import 'package:doof_app/authentication/authenticate.dart';
+import 'package:doof_app/default_screens/first_page.dart';
 import 'package:doof_app/default_screens/home.dart';
 import 'package:doof_app/models/user.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,8 @@ class Wrapper extends StatelessWidget {
     //print(user.uid);
 
     if (user == null){
-      return const Authenticate();
+      return const FirstPage();
+      // return const Authenticate();
     }
     else{
       return const MyStatefulWidget();

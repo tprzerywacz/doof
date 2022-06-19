@@ -37,6 +37,8 @@ class ThisWeek extends StatelessWidget {
               ),
             ),
             const GetLogo(name: 'Green'),
+            // const GetLogo(name: 'Yellow'),
+            // const GetLogo(name: 'Red'),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 10),
               child: Container(
