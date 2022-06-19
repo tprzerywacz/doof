@@ -11,14 +11,17 @@ class FirstPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Stack(
         children: <Widget>[
           Expanded(
             child: SvgPicture.asset(
               'assets/background.svg',
-              fit: BoxFit.fitWidth,
-              alignment: Alignment.topCenter,
+              alignment: Alignment.center,
+            width: MediaQuery.of(context).size.width,
+            height: height,
             ),
           ),
           Align(
