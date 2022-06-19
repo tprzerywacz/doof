@@ -38,7 +38,7 @@ class _SummaryState extends State<Summary> {
           child: Padding(
             padding: EdgeInsets.all(40.0),
             child: Text(
-              'Your food has been thrown away successively!',
+              'Your food has been thrown away successfully!',
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.normal),
               textAlign: TextAlign.center,
             ),
