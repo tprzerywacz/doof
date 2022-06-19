@@ -5,17 +5,25 @@ import 'get_logo.dart';
 import '../globals.dart' as globals;
 
 class Quantity extends StatefulWidget {
-  late int pcs;
+  final int pcs;
   final String name;
   final Function() notifyParent;
-  Quantity({Key? key, required this.pcs, required this.name, required this.notifyParent}) : super(key: key);
+  const Quantity({Key? key, required this.pcs, required this.name, required this.notifyParent}) : super(key: key);
 
   @override
   State<Quantity> createState() => _QuantityState();
 }
 
 class _QuantityState extends State<Quantity> {
+  late int pcs;
   Color btnColor = Colors.grey;
+
+  @override
+  void initState() {
+    super.initState();
+    pcs = widget.pcs;
+  }
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -38,8 +46,8 @@ class _QuantityState extends State<Quantity> {
           setState(
             () {
               if (widget.pcs > 0) {
-                widget.pcs = widget.pcs - 1;
-                globals.updateItemsQuanitity(widget.name, widget.pcs);
+                pcs = widget.pcs - 1;
+                globals.updateItemsQuanitity(widget.name, pcs);
                 widget.notifyParent();
               }
             },
@@ -54,7 +62,7 @@ class _QuantityState extends State<Quantity> {
           onPressed: () {
             setState(
               () {
-                widget.pcs = widget.pcs + 1;
+                pcs = widget.pcs + 1;
                 btnColor = primaryColor;
                 globals.updateItemsQuanitity(widget.name, widget.pcs);
                 widget.notifyParent();
