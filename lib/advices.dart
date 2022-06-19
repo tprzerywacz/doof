@@ -3,7 +3,15 @@ import 'dart:math';
 
 import 'widgets/get_logo.dart';
 
+final _random = Random();
+
 class Advice extends StatefulWidget {
+  final int index;
+
+  static int getRandomIndex() {
+    return _random.nextInt(logos.length);
+  }
+
   static const List<String> logos = [
     'shopping_list',
     'cart',
@@ -73,28 +81,23 @@ class Advice extends StatefulWidget {
     'The zero-waste ideology was created to reduce food waste and the amount of waste generated. On the pages promoting this lifestyle, you will find even more tricks on saving food and using leftovers in the refrigerator. You will also learn ways to reduce the amount of generated waste - paper, plastic or glass. This is an excellent response to the wasteful lifestyle in which many people are getting lost today.',
   ];
 
-  const Advice({super.key});
+  const Advice({super.key, required this.index});
 
   @override
   State<Advice> createState() => _AdviceState();
 }
 
 class _AdviceState extends State<Advice> {
-  final _random = Random();
   bool visible = false;
   Icon icon = const Icon(Icons.expand_more);
-
-  int getIndex(int min, int max) => min + _random.nextInt(max - min);
-
-  late int index = getIndex(0, 20);
 
   @override
   Widget build(BuildContext context) {
     //index = getIndex(0, 20);
     return Column(
       children: [
-        _buildRow(context, Advice.logos[index], Advice.titles[index]),
-        if (visible) Text(Advice.description[index])
+        _buildRow(context, Advice.logos[widget.index], Advice.titles[widget.index]),
+        if (visible) Text(Advice.description[widget.index])
       ],
     );
   }

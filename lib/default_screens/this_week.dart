@@ -5,7 +5,18 @@ import '../widgets/get_logo.dart';
 import 'package:doof_app/globals.dart' as globals;
 
 class ThisWeek extends StatelessWidget {
-  const ThisWeek({super.key});
+  final List<int> _indices = [];
+
+  ThisWeek({super.key}) {
+    for (int i = 0; i < 3; i++) {
+      int x;
+      do {
+        x = Advice.getRandomIndex();
+      } while (_indices.contains(x));
+      _indices.add(x);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,14 +92,12 @@ class ThisWeek extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           'Recommendations',
                           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        Advice(),
-                        Advice(),
-                        Advice(),
+                        for (final i in _indices) Advice(index: i),
                       ],
                     ),
                   )
