@@ -40,7 +40,6 @@ class MyProfile extends StatelessWidget {
             ),
           ),
           _buildRow(context, "Password", "Change password"),
-          _buildRow(context, "Data", "Export data"),
           const Spacer(),
           Padding(
             padding: const EdgeInsets.all(20),
