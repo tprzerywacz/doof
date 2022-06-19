@@ -32,9 +32,17 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 
   void _onScreenChanged() {
-    setState(() {
-      btnVisibility = globals.homeNavigation.selectedIndex == 0;
-    });
+    if (mounted) {
+      setState(() {
+        btnVisibility = globals.homeNavigation.selectedIndex == 0;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    globals.homeNavigation.removeListener(_onScreenChanged);
+    super.dispose();
   }
 
   final List<Widget> _widgetOptions = <Widget>[ThisWeek(), const Products(), const Statistics(), MyProfile()];
