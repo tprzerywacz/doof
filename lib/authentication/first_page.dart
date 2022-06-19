@@ -16,7 +16,8 @@ class FirstPage extends StatelessWidget {
         children: <Widget>[
           SvgPicture.asset(
             'assets/background.svg',
-            fit: BoxFit.fitHeight,
+            fit: BoxFit.cover,
+            alignment: Alignment.topCenter,
           ),
           Align(
             alignment: Alignment.bottomCenter,
