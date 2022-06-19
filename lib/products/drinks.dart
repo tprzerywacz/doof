@@ -10,7 +10,9 @@ class DrinkItems extends StatefulWidget {
 }
 
 class _DrinkItemsState extends State<DrinkItems> {
+  final filter = TextEditingController();
   int count = 0;
+
   @override
   Widget build(BuildContext context) {
     count = 0;
@@ -33,7 +35,8 @@ class _DrinkItemsState extends State<DrinkItems> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-            child: TextField(
+            child: TextFormField(
+              controller: filter,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
@@ -51,9 +54,9 @@ class _DrinkItemsState extends State<DrinkItems> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          ProductItem(label: 'Water (50ml)', notifyParent: refresh),
-          ProductItem(label: 'Tea (50ml)', notifyParent: refresh),
-          ProductItem(label: 'Juice (50ml)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Water (50ml)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Tea (50ml)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Juice (50ml)', notifyParent: refresh),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -61,11 +64,11 @@ class _DrinkItemsState extends State<DrinkItems> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          // ProductItem(label: 'Water (50ml)', notifyParent: refresh),
-          // ProductItem(label: 'Juice (50ml)', notifyParent: refresh),
-          ProductItem(label: 'Alcohol (50ml)', notifyParent: refresh),
-          ProductItem(label: 'Coffee (50ml)', notifyParent: refresh),
-          // ProductItem(label: 'Tea (50ml)),
+          // ProductItem(filter: filter, label: 'Water (50ml)', notifyParent: refresh),
+          // ProductItem(filter: filter, label: 'Juice (50ml)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Alcohol (50ml)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Coffee (50ml)', notifyParent: refresh),
+          // ProductItem(filter: filter, label: 'Tea (50ml)),
           NextButton(count: count),
         ],
       ),

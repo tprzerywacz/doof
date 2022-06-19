@@ -10,7 +10,9 @@ class DairyItems extends StatefulWidget {
 }
 
 class _DairyItemsState extends State<DairyItems> {
+  final filter = TextEditingController();
   int count = 0;
+
   @override
   Widget build(BuildContext context) {
     count = 0;
@@ -33,7 +35,8 @@ class _DairyItemsState extends State<DairyItems> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-            child: TextField(
+            child: TextFormField(
+              controller: filter,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
@@ -51,9 +54,9 @@ class _DairyItemsState extends State<DairyItems> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          ProductItem(label: 'Cheese (50g)', notifyParent: refresh),
-          ProductItem(label: 'Butter (50g)', notifyParent: refresh),
-          ProductItem(label: 'Milk (50ml)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Cheese (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Butter (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Milk (50ml)', notifyParent: refresh),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -61,12 +64,9 @@ class _DairyItemsState extends State<DairyItems> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          // ProductItem(label: 'Cheese (50g)', notifyParent: refresh),
-          ProductItem(label: 'Yoghurt (50g)', notifyParent: refresh),
-          // ProductItem(label: 'Milk (50ml)', notifyParent: refresh),
-          ProductItem(label: 'Milk desserts (50g)', notifyParent: refresh),
-          ProductItem(label: 'Cream (50ml)', notifyParent: refresh),
-          // ProductItem(label: 'Butter (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Yoghurt (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Milk desserts (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Cream (50ml)', notifyParent: refresh),
           NextButton(count: count),
         ],
       ),

@@ -10,7 +10,9 @@ class MeatItems extends StatefulWidget {
 }
 
 class _MeatItemsState extends State<MeatItems> {
+  final filter = TextEditingController();
   int count = 0;
+
   @override
   Widget build(BuildContext context) {
     count = 0;
@@ -33,7 +35,8 @@ class _MeatItemsState extends State<MeatItems> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-            child: TextField(
+            child: TextFormField(
+              controller: filter,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
@@ -51,9 +54,9 @@ class _MeatItemsState extends State<MeatItems> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          ProductItem(label: 'Chicken (50g)', notifyParent: refresh),
-          ProductItem(label: 'Pork (50g)', notifyParent: refresh),
-          ProductItem(label: 'Fish (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Chicken (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Pork (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Fish (50g)', notifyParent: refresh),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -61,12 +64,12 @@ class _MeatItemsState extends State<MeatItems> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          ProductItem(label: 'Beef (50g)', notifyParent: refresh),
-          // ProductItem(label: 'Pork (50g)', notifyParent: refresh),
-          ProductItem(label: 'Lamb (50g)', notifyParent: refresh),
-          // ProductItem(label: 'Chicken (50g)', notifyParent: refresh),
-          // ProductItem(label: 'Fish (50g)', notifyParent: refresh),
-          ProductItem(label: 'Sausage (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Beef (50g)', notifyParent: refresh),
+          // ProductItem(filter: filter, label: 'Pork (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Lamb (50g)', notifyParent: refresh),
+          // ProductItem(filter: filter, label: 'Chicken (50g)', notifyParent: refresh),
+          // ProductItem(filter: filter, label: 'Fish (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Sausage (50g)', notifyParent: refresh),
           NextButton(count: count),
         ],
       ),

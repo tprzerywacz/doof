@@ -10,7 +10,9 @@ class FruitItems extends StatefulWidget {
 }
 
 class _FruitItemsState extends State<FruitItems> {
+  final filter = TextEditingController();
   int count = 0;
+
   @override
   Widget build(BuildContext context) {
     count = 0;
@@ -33,7 +35,8 @@ class _FruitItemsState extends State<FruitItems> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-            child: TextField(
+            child: TextFormField(
+              controller: filter,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
@@ -51,9 +54,9 @@ class _FruitItemsState extends State<FruitItems> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          ProductItem(label: 'Orange (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Lemon (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Peach (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Orange (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Lemon (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Peach (pcs)', notifyParent: refresh),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -61,25 +64,25 @@ class _FruitItemsState extends State<FruitItems> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          ProductItem(label: 'Watermelon (50g)', notifyParent: refresh),
-          ProductItem(label: 'Avocado (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Banana (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Berries (50g)', notifyParent: refresh),
-          ProductItem(label: 'Cherries (50g)', notifyParent: refresh),
-          ProductItem(label: 'Grapes (50g)', notifyParent: refresh),
-          ProductItem(label: 'Kiwi (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Lychee (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Mango (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Papaya (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Pear (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Pineapple (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Plum (50g)', notifyParent: refresh),
-          ProductItem(label: 'Pomegranate (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Raspberry (50g)', notifyParent: refresh),
-          ProductItem(label: 'Strawberry (50g)', notifyParent: refresh),
-          ProductItem(label: 'Tangerine (50g)', notifyParent: refresh),
-          // ProductItem(label: 'Orange (pcs)', notifyParent: refresh),
-          // ProductItem(label: 'Peach (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Watermelon (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Avocado (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Banana (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Berries (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Cherries (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Grapes (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Kiwi (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Lychee (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Mango (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Papaya (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Pear (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Pineapple (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Plum (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Pomegranate (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Raspberry (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Strawberry (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Tangerine (50g)', notifyParent: refresh),
+          // ProductItem(filter: filter, label: 'Orange (pcs)', notifyParent: refresh),
+          // ProductItem(filter: filter, label: 'Peach (pcs)', notifyParent: refresh),
           NextButton(count: count)
         ],
       ),

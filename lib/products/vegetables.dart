@@ -10,7 +10,9 @@ class VegetableItems extends StatefulWidget {
 }
 
 class _VegetableItemsState extends State<VegetableItems> {
+  final filter = TextEditingController();
   int count = 0;
+
   @override
   Widget build(BuildContext context) {
     count = 0;
@@ -33,7 +35,8 @@ class _VegetableItemsState extends State<VegetableItems> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-            child: TextField(
+            child: TextFormField(
+              controller: filter,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
@@ -51,9 +54,9 @@ class _VegetableItemsState extends State<VegetableItems> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          ProductItem(label: 'Carrots (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Tomatoes (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Cucumber (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Carrots (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Tomatoes (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Cucumber (pcs)', notifyParent: refresh),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -61,17 +64,17 @@ class _VegetableItemsState extends State<VegetableItems> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          // ProductItem(label: 'Carrots (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Potatoes (pcs)', notifyParent: refresh),
-          // ProductItem(label: 'Tomatoes (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Onion (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Paprika (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Cabbage (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Lettuce (pcs)', notifyParent: refresh),
-          // ProductItem(label: 'Cucumber (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Brocolli (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Parsley (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Garlic (pcs)', notifyParent: refresh),
+          // ProductItem(filter: filter, label: 'Carrots (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Potatoes (pcs)', notifyParent: refresh),
+          // ProductItem(filter: filter, label: 'Tomatoes (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Onion (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Paprika (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Cabbage (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Lettuce (pcs)', notifyParent: refresh),
+          // ProductItem(filter: filter, label: 'Cucumber (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Brocolli (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Parsley (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Garlic (pcs)', notifyParent: refresh),
           NextButton(count: count),
         ],
       ),

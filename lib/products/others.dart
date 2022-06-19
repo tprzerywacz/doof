@@ -10,7 +10,9 @@ class OtherItems extends StatefulWidget {
 }
 
 class _OtherItemsState extends State<OtherItems> {
+  final filter = TextEditingController();
   int count = 0;
+
   @override
   Widget build(BuildContext context) {
     count = 0;
@@ -33,7 +35,8 @@ class _OtherItemsState extends State<OtherItems> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-            child: TextField(
+            child: TextFormField(
+              controller: filter,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
@@ -51,9 +54,9 @@ class _OtherItemsState extends State<OtherItems> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          ProductItem(label: 'Egg (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Cookies (50g)', notifyParent: refresh),
-          ProductItem(label: 'Mushrooms (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Egg (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Cookies (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Mushrooms (50g)', notifyParent: refresh),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -61,15 +64,15 @@ class _OtherItemsState extends State<OtherItems> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          ProductItem(label: 'Prawns (50g)', notifyParent: refresh),
-          // ProductItem(label: 'Egg (pcs)', notifyParent: refresh),
-          ProductItem(label: 'Ketchup or mustard (50g)', notifyParent: refresh),
-          // ProductItem(label: 'Cookies (50g)', notifyParent: refresh),
-          ProductItem(label: 'Candy (50g)', notifyParent: refresh),
-          ProductItem(label: 'Honey (50g)', notifyParent: refresh),
-          ProductItem(label: 'Fries (50g)', notifyParent: refresh),
-          ProductItem(label: 'Chips (50g)', notifyParent: refresh),
-          // ProductItem(label: 'Mushrooms (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Prawns (50g)', notifyParent: refresh),
+          // ProductItem(filter: filter, label: 'Egg (pcs)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Ketchup or mustard (50g)', notifyParent: refresh),
+          // ProductItem(filter: filter, label: 'Cookies (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Candy (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Honey (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Fries (50g)', notifyParent: refresh),
+          ProductItem(filter: filter, label: 'Chips (50g)', notifyParent: refresh),
+          // ProductItem(filter: filter, label: 'Mushrooms (50g)', notifyParent: refresh),
           NextButton(count: count),
         ],
       ),
