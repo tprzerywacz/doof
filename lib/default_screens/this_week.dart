@@ -73,7 +73,7 @@ class ThisWeek extends StatelessWidget {
                           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         _buildRow(context, "Lettuce", "You threw out 10% more vegetables last week"),
-                        _buildRow(context, "Money", "You lost 120 zł"),
+                        _buildRow(context, "Money", "You lost 120 PLN"),
                       ],
                     ),
                   )
