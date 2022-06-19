@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import 'charts/legend_widget.dart';
+import 'legend_widget.dart';
 
 // Credit: https://dribbble.com/shots/10072126-Heeded-Dashboard
 class ReasonBarChart extends StatelessWidget {
@@ -17,7 +17,7 @@ class ReasonBarChart extends StatelessWidget {
   static const peelingsColor = Color.fromARGB(255, 132, 255, 87);
   static const keepingColor = Color.fromARGB(255, 255, 171, 87);
   static const rotenColor = Color.fromARGB(255, 87, 185, 255);
-  static const betweenSpace = 0.2;
+  static const betweenSpace = 0.05;
 
   BarChartGroupData generateGroupData(
       int x, double pilates, double quickWorkout, double cycling) {
@@ -29,19 +29,19 @@ class ReasonBarChart extends StatelessWidget {
           fromY: 0,
           toY: pilates,
           color: changePlanColor,
-          width: 5,
+          width: 15,
         ),
         BarChartRodData(
           fromY: pilates + betweenSpace,
           toY: pilates + betweenSpace + quickWorkout,
           color: toBigGroceriesColor,
-          width: 5,
+          width: 15,
         ),
         BarChartRodData(
           fromY: pilates + betweenSpace + quickWorkout + betweenSpace,
           toY: pilates + betweenSpace + quickWorkout + betweenSpace + cycling,
           color: eventColor,
-          width: 5,
+          width: 15,
         ),
       ],
     );
@@ -50,24 +50,24 @@ class ReasonBarChart extends StatelessWidget {
   Widget bottomTitles(double value, TitleMeta meta) {
     const style = TextStyle(
       color: Color(0xff787694),
-      fontSize: 10,
+      fontSize: 12,
     );
     String text;
     switch (value.toInt()) {
       case 0:
-        text = "JAN";
+        text = " 09/05 \n 16/05 ";
         break;
       case 1:
-        text = "FEB";
+        text = " 17/05 \n 23/05 ";
         break;
       case 2:
-        text = "MAR";
+        text = " 24/05 \n 30/05 ";
         break;
       case 3:
-        text = "APR";
+        text = " 31/06 \n 06/06 ";
         break;
       case 4:
-        text = "MAY";
+        text = "This week";
         break;
       case 5:
         text = "JUN";
@@ -112,10 +112,10 @@ class ReasonBarChart extends StatelessWidget {
           children: [
             const SizedBox(height: 14),
             AspectRatio(
-              aspectRatio: 2,
+              aspectRatio: 1.5,
               child: BarChart(
                 BarChartData(
-                  alignment: BarChartAlignment.spaceBetween,
+                  alignment: BarChartAlignment.spaceEvenly,
                   titlesData: FlTitlesData(
                     leftTitles: AxisTitles(),
                     rightTitles: AxisTitles(),
@@ -124,28 +124,28 @@ class ReasonBarChart extends StatelessWidget {
                       sideTitles: SideTitles(
                         showTitles: true,
                         getTitlesWidget: bottomTitles,
-                        reservedSize: 16,
+                        reservedSize: 40,
                       ),
                     ),
                   ),
-                  barTouchData: BarTouchData(enabled: false),
+                  barTouchData: BarTouchData(enabled: true),
                   borderData: FlBorderData(show: false),
                   gridData: FlGridData(show: false),
                   barGroups: [
-                    generateGroupData(0, 2, 3, 2),
-                    generateGroupData(1, 2, 5, 1.7),
-                    generateGroupData(2, 1.3, 3.1, 2.8),
-                    generateGroupData(3, 3.1, 4, 3.1),
-                    generateGroupData(4, 0.8, 3.3, 3.4),
-                    generateGroupData(5, 2, 5.6, 1.8),
-                    generateGroupData(6, 1.3, 3.2, 2),
-                    generateGroupData(7, 2.3, 3.2, 3),
-                    generateGroupData(8, 2, 4.8, 2.5),
-                    generateGroupData(9, 1.2, 3.2, 2.5),
-                    generateGroupData(10, 1, 4.8, 3),
-                    generateGroupData(11, 2, 4.4, 2.8),
+                    generateGroupData(0, 28.6,42.7,28.6),
+                    generateGroupData(1, 23.0,57.4,19.5),
+                    generateGroupData(2, 18.1,43.1,38.7),
+                    generateGroupData(3, 28.3,36.7,34.9),
+                    generateGroupData(4, 19.4,38.8,41.7),
+                    // generateGroupData(5, 2, 5.6, 1.8),
+                    // generateGroupData(6, 1.3, 3.2, 2),
+                    // generateGroupData(7, 2.3, 3.2, 3),
+                    // generateGroupData(8, 2, 4.8, 2.5),
+                    // generateGroupData(9, 1.2, 3.2, 2.5),
+                    // generateGroupData(10, 1, 4.8, 3),
+                    // generateGroupData(11, 2, 4.4, 2.8),
                   ],
-                  maxY: 10 + (betweenSpace * 3),
+                  maxY: 100 + (betweenSpace * 3),
                 ),
               ),
             ),
@@ -164,13 +164,13 @@ class ReasonBarChart extends StatelessWidget {
                 Legend("Change cooking plan", changePlanColor),
                 Legend("Too big groceries", toBigGroceriesColor),
                 Legend("Events (parties, holidays)", eventColor),
-                Legend("Short expiration date", shortExpirationColor),
-                Legend("None, just throwing without any reason", noneColor),
-                Legend("Bought but didn't like it", boughtColor),
-                Legend("Eat out unexpected", eatUnexpectedColor),
-                Legend("Peelings and stale vegetable parts", peelingsColor),
-                Legend("Keeping too long", keepingColor),
-                Legend("Rotten food", rotenColor),
+                // Legend("Short expiration date", shortExpirationColor),
+                // Legend("None, just throwing without any reason", noneColor),
+                // Legend("Bought but didn't like it", boughtColor),
+                // Legend("Eat out unexpected", eatUnexpectedColor),
+                // Legend("Peelings and stale vegetable parts", peelingsColor),
+                // Legend("Keeping too long", keepingColor),
+                // Legend("Rotten food", rotenColor),
               ],
             ),
           ],

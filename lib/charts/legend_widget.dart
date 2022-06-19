@@ -23,7 +23,7 @@ class LegendWidget extends StatelessWidget {
             color: color,
           ),
         ),
-        const SizedBox(width: 6),
+        const SizedBox(width: 4),
         Text(
           name,
           style: const TextStyle(
@@ -31,6 +31,7 @@ class LegendWidget extends StatelessWidget {
             fontSize: 12,
           ),
         ),
+        const SizedBox(width: 12),
       ],
     );
   }
@@ -46,7 +47,7 @@ class LegendsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: legends
           .map(

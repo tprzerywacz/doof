@@ -1,5 +1,5 @@
 import 'package:doof_app/charts/food_thrown_chart.dart';
-import 'package:doof_app/stacked_bar.dart';
+import 'package:doof_app/charts/stacked_bar.dart';
 import 'package:doof_app/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
