@@ -1,15 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:doof_app/models/user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
-import '../styles.dart';
+import '../widgets/next_button.dart';
 import '../widgets/product_item.dart';
+import '../globals.dart' as globals;
 
-class DairyItems extends StatelessWidget {
-  const DairyItems({super.key});
+class DairyItems extends StatefulWidget {
+  const DairyItems({Key? key}) : super(key: key);
+  @override
+  State<DairyItems> createState() => _DairyItemsState();
+}
+
+class _DairyItemsState extends State<DairyItems> {
+  int count = 0;
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<MyUser?>(context);
+    count = 0;
+    for (var item in globals.tempItems) {
+      count += item.quantity;
+    }
+
+    refresh() {
+      count = 0;
+      for (var item in globals.tempItems) {
+        count += item.quantity;
+      }
+
+      setState(() {});
+    }
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -34,9 +51,9 @@ class DairyItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          const ProductItem(label: 'Cheese (50g)'),
-          const ProductItem(label: 'Butter (50g)'),
-          const ProductItem(label: 'Milk (50ml)'),
+          ProductItem(label: 'Cheese (50g)', notifyParent: refresh),
+          ProductItem(label: 'Butter (50g)', notifyParent: refresh),
+          ProductItem(label: 'Milk (50ml)', notifyParent: refresh),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -44,48 +61,15 @@ class DairyItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          const ProductItem(label: 'Cheese (50g)'),
-          const ProductItem(label: 'Yoghurt (50g)'),
-          const ProductItem(label: 'Milk (50ml)'),
-          const ProductItem(label: 'Milk desserts (50g)'),
-          const ProductItem(label: 'Cream (50ml)'),
-          const ProductItem(label: 'Butter (50g)'),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(customOrange),
-                textStyle: MaterialStateProperty.all(
-                  const TextStyle(fontSize: 18),
-                ),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(44.0),
-                      side: const BorderSide(color: customOrange)),
-                ),
-              ),
-              onPressed: () {
-                addToFirestore(uid: user!.uid);
-              },
-              child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 22.0),
-                child: Text('Next step (3)'),
-              ),
-            ),
-          ),
-        ],
+          // ProductItem(label: 'Cheese (50g)', notifyParent: refresh),
+          ProductItem(label: 'Yoghurt (50g)', notifyParent: refresh),
+          // ProductItem(label: 'Milk (50ml)', notifyParent: refresh),
+          ProductItem(label: 'Milk desserts (50g)', notifyParent: refresh),
+          ProductItem(label: 'Cream (50ml)', notifyParent: refresh),
+          // ProductItem(label: 'Butter (50g)', notifyParent: refresh),
+          NextButton(count: count),
+],
       ),
     );
-  }
-
-  Future addToFirestore({required uid}) async {
-    final docUser = FirebaseFirestore.instance.collection('users').doc();
-    final json = {
-      'timestamp': DateTime.now(),
-      'uid': uid,
-      'how_much': 'a lot',
-      'what': "whatever"
-    };
-    await docUser.set(json);
   }
 }

@@ -1,15 +1,32 @@
-import 'package:doof_app/styles.dart';
-import 'package:doof_app/widgets/product_item.dart';
 import 'package:flutter/material.dart';
-import 'package:doof_app/models/user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
+import '../widgets/next_button.dart';
+import '../widgets/product_item.dart';
+import '../globals.dart' as globals;
 
-class FruitItems extends StatelessWidget {
-  const FruitItems({super.key});
+class FruitItems extends StatefulWidget {
+  const FruitItems({Key? key}) : super(key: key);
+  @override
+  State<FruitItems> createState() => _FruitItemsState();
+}
+
+class _FruitItemsState extends State<FruitItems> {
+  int count = 0;
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<MyUser?>(context);
+    count = 0;
+    for (var item in globals.tempItems) {
+      count += item.quantity;
+    }
+
+    refresh() {
+      count = 0;
+      for (var item in globals.tempItems) {
+        count += item.quantity;
+      }
+
+      setState(() {});
+    }
+    
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -34,9 +51,9 @@ class FruitItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          const ProductItem(label: 'Orange (pcs)'),
-          const ProductItem(label: 'Lemon (pcs)'),
-          const ProductItem(label: 'Peach (pcs)'),
+          ProductItem(label: 'Orange (pcs)', notifyParent: refresh),
+          ProductItem(label: 'Lemon (pcs)', notifyParent: refresh),
+          ProductItem(label: 'Peach (pcs)', notifyParent: refresh),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -44,46 +61,13 @@ class FruitItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          const ProductItem(label: 'Watermelon 100g'),
-          const ProductItem(label: 'Avocado (pcs)'),
-          const ProductItem(label: 'Orange (pcs)'),
-          const ProductItem(label: 'Peach (pcs)'),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(customOrange),
-                textStyle: MaterialStateProperty.all(
-                  const TextStyle(fontSize: 18),
-                ),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(44.0),
-                      side: const BorderSide(color: customOrange)),
-                ),
-              ),
-              onPressed: () {
-                addToFirestore(uid: user!.uid);
-              },
-              child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 22.0),
-                child: Text('Next step (3)'),
-              ),
-            ),
-          ),
+          ProductItem(label: 'Watermelon 100g', notifyParent: refresh),
+          ProductItem(label: 'Avocado (pcs)', notifyParent: refresh),
+          // ProductItem(label: 'Orange (pcs)', notifyParent: refresh),
+          // ProductItem(label: 'Peach (pcs)', notifyParent: refresh),
+          NextButton(count: count)
         ],
       ),
     );
-  }
-
-  Future addToFirestore({required uid}) async {
-    final docUser = FirebaseFirestore.instance.collection('users').doc();
-    final json = {
-      'timestamp': DateTime.now(),
-      'uid': uid,
-      'how_much': 'a lot',
-      'what': "whatever"
-    };
-    await docUser.set(json);
   }
 }

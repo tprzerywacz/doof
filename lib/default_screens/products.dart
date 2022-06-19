@@ -10,43 +10,50 @@ import 'package:doof_app/products/fruits.dart';
 import 'package:doof_app/products/meat.dart';
 
 import '../widgets/get_logo.dart';
+import '../globals.dart' as globals;
 
-class Products extends StatelessWidget {
-  const Products({super.key});
+class Products extends StatefulWidget {
+  const Products({Key? key}) : super(key: key);
+  @override
+  State<Products> createState() => _ProductsState();
+}
+
+class _ProductsState extends State<Products> {
 
   @override
   Widget build(BuildContext context) {
     return Navigator(
       onGenerateRoute: (settings) {
         Widget page = const Categories();
-        switch (settings.name) {
-          case 'Meat':
-            page = const Meat();
-            break;
-          case 'Vegetables':
-            page = const Vegetables();
-            break;
-          case 'Fruits':
-            page = const Fruits();
-            break;
-          case 'Dairy':
-            page = const Dairy();
-            break;
-          case 'Drinks':
-            page = const Drinks();
-            break;
-          case 'Bread':
-            page = const Bread();
-            break;
-          case 'Other':
-            page = const Other();
-            break;
-          case 'Summary':
-            page = const Checkout();
-            break;
-          default:
-            break;
-        }
+
+          switch (settings.name) {
+            case 'Meat':
+              page = const Meat();
+              break;
+            case 'Vegetables':
+              page = const Vegetables();
+              break;
+            case 'Fruits':
+              page = const Fruits();
+              break;
+            case 'Dairy':
+              page = const Dairy();
+              break;
+            case 'Drinks':
+              page = const Drinks();
+              break;
+            case 'Bread':
+              page = const Bread();
+              break;
+            case 'Other':
+              page = const Other();
+              break;
+            case 'Summary':
+              page = const Checkout();
+              break;
+            default:
+              break;
+          }
         return MaterialPageRoute(builder: (_) => page);
       },
     );
@@ -117,6 +124,7 @@ class Categories extends StatelessWidget {
           ),
         ),
         onPressed: () => {
+          globals.tempItems.clear(),
           Navigator.pushNamed(context, label),
         },
         child: Padding(
@@ -139,7 +147,6 @@ class Categories extends StatelessWidget {
 
 class Meat extends StatelessWidget {
   const Meat({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(

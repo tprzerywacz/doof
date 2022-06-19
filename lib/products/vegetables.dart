@@ -1,15 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:doof_app/models/user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
-import '../styles.dart';
+import '../widgets/next_button.dart';
 import '../widgets/product_item.dart';
+import '../globals.dart' as globals;
 
-class VegetableItems extends StatelessWidget {
-  const VegetableItems({super.key});
+class VegetableItems extends StatefulWidget {
+  const VegetableItems({Key? key}) : super(key: key);
+  @override
+  State<VegetableItems> createState() => _VegetableItemsState();
+}
+
+class _VegetableItemsState extends State<VegetableItems> {
+  int count = 0;
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<MyUser?>(context);
+    count = 0;
+    for (var item in globals.tempItems) {
+      count += item.quantity;
+    }
+
+    refresh() {
+      count = 0;
+      for (var item in globals.tempItems) {
+        count += item.quantity;
+      }
+
+      setState(() {});
+    }
+    
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -34,9 +51,9 @@ class VegetableItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          const ProductItem(label: 'Carrots (pcs)'),
-          const ProductItem(label: 'Tomatoes (pcs)'),
-          const ProductItem(label: 'Cucumber (pcs)'),
+          ProductItem(label: 'Carrots (pcs)', notifyParent: refresh),
+          ProductItem(label: 'Tomatoes (pcs)', notifyParent: refresh),
+          ProductItem(label: 'Cucumber (pcs)', notifyParent: refresh),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -44,54 +61,20 @@ class VegetableItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          const ProductItem(label: 'Carrots (pcs)'),
-          const ProductItem(label: 'Potatoes (pcs)'),
-          const ProductItem(label: 'Tomatoes (pcs)'),
-          const ProductItem(label: 'Onion (pcs)'),
-          const ProductItem(label: 'Paprika (pcs)'),
-          const ProductItem(label: 'Cabbage (pcs)'),
-          const ProductItem(label: 'Lettuce (pcs)'),
-          const ProductItem(label: 'Cucumber (pcs)'),
-          const ProductItem(label: 'Brocolli (pcs)'),
-          const ProductItem(label: 'Parsley (pcs)'),
-          const ProductItem(label: 'Garlic (pcs)'),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(customOrange),
-                textStyle: MaterialStateProperty.all(
-                  const TextStyle(fontSize: 18),
-                ),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(44.0),
-                    side: const BorderSide(color: customOrange),
-                  ),
-                ),
-              ),
-              onPressed: () {
-                addToFirestore(uid: user!.uid);
-              },
-              child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 22.0),
-                child: Text('Next step (3)'),
-              ),
-            ),
-          ),
+          // ProductItem(label: 'Carrots (pcs)', notifyParent: refresh),
+          ProductItem(label: 'Potatoes (pcs)', notifyParent: refresh),
+          // ProductItem(label: 'Tomatoes (pcs)', notifyParent: refresh),
+          ProductItem(label: 'Onion (pcs)', notifyParent: refresh),
+          ProductItem(label: 'Paprika (pcs)', notifyParent: refresh),
+          ProductItem(label: 'Cabbage (pcs)', notifyParent: refresh),
+          ProductItem(label: 'Lettuce (pcs)', notifyParent: refresh),
+          // ProductItem(label: 'Cucumber (pcs)', notifyParent: refresh),
+          ProductItem(label: 'Brocolli (pcs)', notifyParent: refresh),
+          ProductItem(label: 'Parsley (pcs)', notifyParent: refresh),
+          ProductItem(label: 'Garlic (pcs)', notifyParent: refresh),
+          NextButton(count: count),
         ],
       ),
     );
-  }
-
-  Future addToFirestore({required uid}) async {
-    final docUser = FirebaseFirestore.instance.collection('users').doc();
-    final json = {
-      'timestamp': DateTime.now(),
-      'uid': uid,
-      'how_much': 'a lot',
-      'what': "whatever"
-    };
-    await docUser.set(json);
   }
 }

@@ -1,15 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:doof_app/models/user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
-import '../styles.dart';
+import '../widgets/next_button.dart';
 import '../widgets/product_item.dart';
+import '../globals.dart' as globals;
 
-class DrinkItems extends StatelessWidget {
-  const DrinkItems({super.key});
+class DrinkItems extends StatefulWidget {
+  const DrinkItems({Key? key}) : super(key: key);
+  @override
+  State<DrinkItems> createState() => _DrinkItemsState();
+}
+
+class _DrinkItemsState extends State<DrinkItems> {
+  int count = 0;
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<MyUser?>(context);
+    count = 0;
+    for (var item in globals.tempItems) {
+      count += item.quantity;
+    }
+
+    refresh() {
+      count = 0;
+      for (var item in globals.tempItems) {
+        count += item.quantity;
+      }
+
+      setState(() {});
+    }
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -34,9 +51,9 @@ class DrinkItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          const ProductItem(label: 'Water (50ml)'),
-          const ProductItem(label: 'Tea (50ml)'),
-          const ProductItem(label: 'Juice (50ml)'),
+          ProductItem(label: 'Water (50ml)', notifyParent: refresh),
+          ProductItem(label: 'Tea (50ml)', notifyParent: refresh),
+          ProductItem(label: 'Juice (50ml)', notifyParent: refresh),
           const Padding(
             padding: EdgeInsets.all(24.0),
             child: Text(
@@ -44,47 +61,14 @@ class DrinkItems extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
           ),
-          const ProductItem(label: 'Water (50ml)'),
-          const ProductItem(label: 'Juice (50ml)'),
-          const ProductItem(label: 'Alcohol (50ml)'),
-          const ProductItem(label: 'Coffee (50ml)'),
-          const ProductItem(label: 'Tea (50ml)'),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(customOrange),
-                textStyle: MaterialStateProperty.all(
-                  const TextStyle(fontSize: 18),
-                ),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(44.0),
-                      side: const BorderSide(color: customOrange)),
-                ),
-              ),
-              onPressed: () {
-                addToFirestore(uid: user!.uid);
-              },
-              child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 22.0),
-                child: Text('Next step (3)'),
-              ),
-            ),
-          ),
+          // ProductItem(label: 'Water (50ml)', notifyParent: refresh),
+          // ProductItem(label: 'Juice (50ml)', notifyParent: refresh),
+          ProductItem(label: 'Alcohol (50ml)', notifyParent: refresh),
+          ProductItem(label: 'Coffee (50ml)', notifyParent: refresh),
+          // ProductItem(label: 'Tea (50ml)),
+          NextButton(count: count),
         ],
       ),
     );
-  }
-
-  Future addToFirestore({required uid}) async {
-    final docUser = FirebaseFirestore.instance.collection('users').doc();
-    final json = {
-      'timestamp': DateTime.now(),
-      'uid': uid,
-      'how_much': 'a lot',
-      'what': "whatever"
-    };
-    await docUser.set(json);
   }
 }

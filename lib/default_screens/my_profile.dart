@@ -30,7 +30,7 @@ class MyProfile extends StatelessWidget {
           _buildRow(context, "Name", "Marcin"),
           _buildRow(context, "Surname", "Nowak"),
           _buildRow(context, "Gender", "Prefer not to say"),
-          _buildRow(context, "Aga", "24"),
+          _buildRow(context, "Age", "24"),
           _buildRow(context, "Household people count", "5"),
           const Padding(
             padding: EdgeInsets.all(24.0),

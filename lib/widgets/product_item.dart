@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import '../globals.dart' as globals;
 
 import '../styles.dart';
 import 'get_logo.dart';
 
 class ProductItem extends StatefulWidget {
   final String label;
-  const ProductItem({Key? key, required this.label}) : super(key: key);
+  final Function() notifyParent;
+  const ProductItem({Key? key, required this.label, required this.notifyParent}) : super(key: key);
 
   @override
   State<ProductItem> createState() => _ProductItemState();
@@ -53,6 +55,8 @@ class _ProductItemState extends State<ProductItem> {
                     () {
                       if (count > 0) {
                         count = count - 1;
+                        globals.updateTempItem(widget.label, count);
+                        widget.notifyParent();
                       }
                     },
                   );
@@ -67,6 +71,8 @@ class _ProductItemState extends State<ProductItem> {
                     setState(
                       () {
                         count = count + 1;
+                        globals.updateTempItem(widget.label, count);
+                        widget.notifyParent();
                         btnColor = primaryColor;
                       },
                     );

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import '../globals.dart' as globals;
 
 class ReasonButton extends StatefulWidget {
-  const ReasonButton({Key? key}) : super(key: key);
+  final String name;
+  const ReasonButton({Key? key, required this.name}) : super(key: key);
 
   @override
   State<ReasonButton> createState() => _ReasonButtonState();
@@ -37,6 +39,7 @@ class _ReasonButtonState extends State<ReasonButton> {
             onChanged: (String? newValue) {
               setState(() {
                 dropdownValue = newValue!;
+                globals.updateItemsReason(widget.name, dropdownValue);
               });
             },
             items: <String>[
